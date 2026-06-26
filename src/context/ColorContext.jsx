@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 const ColorContext = createContext();
-const LISTA_COLORES = ["#8b5cf6", "#00e1ff", "#ff0055", "#00ff66", "#ffaa00"];
+const LISTA_COLORES = ["#8b5cf6", "#00e1ff", "#00ffcc", "#00ff66", "#ffaa00"];
 export function ColorProvider({ children }) {
   const [colorPrincipal, setColorPrincipal] = useState("#8b5cf6");
 

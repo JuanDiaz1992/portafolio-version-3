@@ -2,6 +2,7 @@ import { Button, Tooltip } from "@heroui/react";
 import { motion } from "framer-motion";
 import { FaReact } from "react-icons/fa";
 import { SiSpring } from "react-icons/si";
+import { useColor } from "../../../context/ColorContext";
 
 import SliderBase from "../SliderEmbla/SliderBase";
 
@@ -12,6 +13,7 @@ const video2 = "/img/newHome/section1/sliders/video3.mp4";
 
 export default function Slider1() {
   const emblaOptions = { loop: true, axis: "y" };
+  const { colorPrincipal } = useColor()
 
   return (
     <SliderBase options={emblaOptions}>

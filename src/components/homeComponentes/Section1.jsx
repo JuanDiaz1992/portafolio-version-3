@@ -97,7 +97,7 @@ export default function Section1() {
               }}
             />
             <motion.img
-              className="absolute bottom-0 left-0 max-w-[150px] lg:max-w-full"
+              className="absolute bottom-0 left-0 max-w-37.5 lg:max-w-full"
               src={logoFondo}
               alt="logoFondo"
               initial={{ y: 150, opacity: 0 }}
@@ -112,7 +112,7 @@ export default function Section1() {
           </motion.div>
 
           <div
-            className={`${cardBaseStyle} bg-white dark:bg-zinc-900 border border-black/3 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex items-center justify-center py-6 h-[120px] sm:h-[250px] lg:h-[40%] w-full sm:w-1/2 lg:w-full`}
+            className={`${cardBaseStyle} bg-white dark:bg-zinc-900 border border-black/3 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex items-center justify-center py-6 h-30 sm:h-62.5 lg:h-[40%] w-full sm:w-1/2 lg:w-full`}
           >
             <div className="flex flex-wrap gap-6 justify-center items-center">
               {[
@@ -204,7 +204,7 @@ export default function Section1() {
                       <Tooltip delay={0}>
                         <Tooltip.Trigger>
                           <div
-                            className="text-white hover:text-[#00e1ff] flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md text-3xl lg:text-4xl p-2 rounded-xl bg-white/5 border border-white/5 hover:border-[#00e1ff]/30 w-14 h-14"
+                            className={`text-white hover:text-[#00e1ff] flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md text-3xl lg:text-4xl p-2 rounded-xl bg-white/5 border border-white/5 hover:border-[#00e1ff]/30 w-14 h-14`}
                             role="button"
                             tabIndex={0}
                             aria-label={skill[1]}
