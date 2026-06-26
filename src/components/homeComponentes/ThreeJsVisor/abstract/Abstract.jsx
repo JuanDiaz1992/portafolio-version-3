@@ -1,15 +1,16 @@
-import React, { useMemo, useRef, useEffect } from "react";
+import { useMemo, useRef, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { Physics, RigidBody } from "@react-three/rapier";
+import { RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
+import { useColor } from "../../../../context/ColorContext";
 
 // 1. Sub-componente Físico para cada pieza individual
-function JackFisico({ scene, color, position, scale, materialType, ...props }) {
+function JackFisico({ scene, color, position, scale, materialType, }) {
   const rigidBodyRef = useRef();
 
   // Guardamos un desfase único para cada pieza para que no floten todas exactamente al mismo tiempo
-  const seedRandom = useMemo(() => Math.random() * 10, []);
+  const [seedRandom] = useState(() => Math.random() * 10);
 
   // Clonamos e inyectamos propiedades físicas y estéticas basadas en m_Glow y el acabado asignado
   const clon = useMemo(() => {
@@ -27,16 +28,16 @@ function JackFisico({ scene, color, position, scale, materialType, ...props }) {
           // --- 🌟 CONFIGURACIÓN FIEL A LA REFERENCIA 🌟 ---
           if (materialType === "metal") {
             // 💎 Tu material original "metal" actúa como la pasta/acrílico ultra brillante
-            child.material.metalness = 0.0; // 0 metalizado -> Plástico/Pasta pura
-            child.material.roughness = 0.02; // Superficie ultra pulida (espejo/cerámica de lujo)
+            child.material.metalness = 0.1; // 0 metalizado -> Plástico/Pasta pura
+            child.material.roughness = 1.1; // Superficie ultra pulida (espejo/cerámica de lujo)
             child.material.emissiveIntensity = 0;
           } else if (materialType === "plastic") {
             child.material.metalness = 0.0;
-            child.material.roughness = 0.25; // Plástico satinado
+            child.material.roughness = 0.22; // Plástico satinado
             child.material.emissiveIntensity = 0;
           } else {
             child.material.metalness = 0.0;
-            child.material.roughness = 0.95; // Súper opaco y elegante (Matte original)
+            child.material.roughness = 0.65; // Súper opaco y elegante (Matte original)
             child.material.emissiveIntensity = 0;
           }
 
@@ -48,25 +49,43 @@ function JackFisico({ scene, color, position, scale, materialType, ...props }) {
   }, [scene, color, materialType]);
 
   // 🌟 EFECTO DE ENTRADA: Impulso inicial hacia adelante (Z positivo) en cuanto nacen
+// 🚀 EFECTO DE ENTRADA: Viajar agrupadas y explotar solo al chocar con la cámara
   useEffect(() => {
     if (!rigidBodyRef.current) return;
 
     const timeout = setTimeout(() => {
-      const fuerzaZ = 75.0 + Math.random() * 35.0; 
-      const dispersionX = (Math.random() - 0.5) * 15.0;
-      const dispersionY = (Math.random() - 0.5) * 15.0;
+      // 1. Obtenemos la posición donde nació esta pieza al fondo
+      const currentPos = rigidBodyRef.current.translation();
+      const posPieza = new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z);
+      
+      // 2. Apuntamos al centro del lente de la cámara
+      const posCamara = new THREE.Vector3(0.15, 1.1, 4.2);
 
-      rigidBodyRef.current.applyImpulse({ x: dispersionX, y: dispersionY, z: fuerzaZ }, true);
+      // 3. Calculamos la dirección perfecta (Línea recta sin desvíos laterales)
+      const direccionHaciaCamara = new THREE.Vector3()
+        .subVectors(posCamara, posPieza)
+        .normalize(); 
 
+      // 4. Potencia del disparo hacia adelante
+      const potenciaImpulso = 85.0 + Math.random() * 20.0;
+      const impulsoFinal = direccionHaciaCamara.multiplyScalar(potenciaImpulso);
+
+      // 5. Aplicamos la fuerza directa (Eliminamos dispersionX y dispersionY)
+      rigidBodyRef.current.applyImpulse(
+        { x: impulsoFinal.x, y: impulsoFinal.y, z: impulsoFinal.z },
+        true,
+      );
+
+      // 6. Mantenemos la rotación loca para que el bloque ruede de forma orgánica mientras viaja
       rigidBodyRef.current.applyTorqueImpulse(
         {
-          x: (Math.random() - 0.5) * 20.0,
-          y: (Math.random() - 0.5) * 20.0,
-          z: (Math.random() - 0.5) * 20.0,
+          x: (Math.random() - 0.5) * 25.0,
+          y: (Math.random() - 0.5) * 25.0,
+          z: (Math.random() - 0.5) * 25.0,
         },
-        true
+        true,
       );
-    }, Math.random() * 150);
+    }, Math.random() * 150); // Tiempos de salida ligeramente escalonados para que vayan compactas pero no clonadas
 
     return () => clearTimeout(timeout);
   }, []);
@@ -77,8 +96,12 @@ function JackFisico({ scene, color, position, scale, materialType, ...props }) {
 
     const t = state.clock.getElapsedTime();
     const currentPos = rigidBodyRef.current.translation();
-    const posVector = new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z);
-    const centroGravedad = new THREE.Vector3(0, 0.5, 0);
+    const posVector = new THREE.Vector3(
+      currentPos.x,
+      currentPos.y,
+      currentPos.z,
+    );
+    const centroGravedad = new THREE.Vector3(0, 1.0, 1.2);
 
     const direction = centroGravedad.clone().sub(posVector);
     const distancia = direction.length();
@@ -91,11 +114,15 @@ function JackFisico({ scene, color, position, scale, materialType, ...props }) {
     rigidBodyRef.current.applyImpulse(direction, true);
 
     // 2. 🌊 TURBULENCIA INDIVIDUAL
-    const movimientoX = Math.sin(t * 0.8 + seedRandom) * Math.cos(t * 0.4 + seedRandom) * 0.05;
+    const movimientoX =
+      Math.sin(t * 0.8 + seedRandom) * Math.cos(t * 0.4 + seedRandom) * 0.05;
     const movimientoY = Math.cos(t * 0.9 + seedRandom * 2) * 0.06;
     const movimientoZ = Math.sin(t * 0.5 + seedRandom) * 0.05;
 
-    rigidBodyRef.current.applyImpulse({ x: movimientoX, y: movimientoY, z: movimientoZ }, true);
+    rigidBodyRef.current.applyImpulse(
+      { x: movimientoX, y: movimientoY, z: movimientoZ },
+      true,
+    );
 
     // Un micro-giro constante flotante
     rigidBodyRef.current.applyTorqueImpulse(
@@ -113,7 +140,11 @@ function JackFisico({ scene, color, position, scale, materialType, ...props }) {
     if (!rigidBodyRef.current) return;
 
     const currentPos = rigidBodyRef.current.translation();
-    const bodyCenter = new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z);
+    const bodyCenter = new THREE.Vector3(
+      currentPos.x,
+      currentPos.y,
+      currentPos.z,
+    );
     const mouseHitPoint = e.point;
     const empujeDireccion = bodyCenter.sub(mouseHitPoint);
 
@@ -152,56 +183,75 @@ function JackFisico({ scene, color, position, scale, materialType, ...props }) {
   );
 }
 
-// 2. Componente Principal que se inyecta en tu Viewer3d
+// 2. Componente Principal Corregido: Estructura fija que no se reinicia con el clic
 export default function Abstract() {
+  const { colorPrincipal } = useColor()
   const { scene } = useGLTF("/3d/abstract.glb");
 
-  const CANTIDAD_ITEMS = 12;
-  const coloresDisponibles = ["#ffffff", "#8b5cf6", "#222222"];
-  const tiposMateriales = ["metal", "plastic", "matte"];
-
-  const jacksAleatorios = useMemo(() => {
+  // 1. 🧊 GENERAMOS LA ESTRUCTURA Y POSICIONES UNA SOLA VEZ AL CARGAR
+  const estructuraBase = useMemo(() => {
     const items = [];
-    for (let i = 0; i < CANTIDAD_ITEMS; i++) {
-      // Nacimiento compacto al fondo del eje Z
-      const x = (Math.random() - 0.5) * 2.0; 
-      const y = (Math.random() - 0.5) * 2.0 + 1.5;
-      const z = -10.0 - (Math.random() * 4.0);
 
-      const colorBalanceado = coloresDisponibles[i % coloresDisponibles.length];
-      let tipoBalanceado = tiposMateriales[i % tiposMateriales.length];
+    const generarPosicionAlFondo = () => [
+      (Math.random() - 0.5) * 1.8,
+      (Math.random() - 0.5) * 1.8 + 1.5,
+      -25.0 - Math.random() * 4.0
+    ];
 
-      // 🌟 REGLA ESTRICTA DE EXCEPCIÓN ÚNICA:
-      // Forzamos que SOLO la primera blanca (i === 0) y SOLO la primera negra (i === 2) hereden el "metal" (pasta brillante).
-      // A todas las demás piezas blancas y negras que salgan en los ciclos siguientes, les quitamos el "metal" y les ponemos "matte" (opaco).
-      if (i === 0 || i === 2) {
-        tipoBalanceado = "metal"; // Estas dos serán las únicas pastas brillantes
-      } else if (tipoBalanceado === "metal") {
-        tipoBalanceado = "matte"; // Las demás posiciones "metal" se vuelven opacas para mantener el contraste mate original
-      }
-
+    // ⚪ 4 BLANCAS
+    for (let i = 0; i < 4; i++) {
       items.push({
-        id: i,
-        position: [x, y, z],
-        color: colorBalanceado,
-        materialType: tipoBalanceado,
+        id: `blanco-${i}`,
+        position: generarPosicionAlFondo(),
+        colorFijo: "#ffffff",
+        esDinamico: false,
+        materialType: i === 0 ? "metal" : (i % 2 === 0 ? "plastic" : "matte"),
       });
     }
+
+    // 🎨 4 DE COLOR (Marcadas como dinámicas)
+    for (let i = 0; i < 4; i++) {
+      items.push({
+        id: `color-${i}`,
+        position: generarPosicionAlFondo(),
+        colorFijo: null,
+        esDinamico: true, // 👈 Esta bandera nos avisará que debe cambiar
+        materialType: i % 3 === 0 ? "metal" : (i % 3 === 1 ? "plastic" : "matte"),
+      });
+    }
+
+    // ⚫ 4 NEGRAS
+    for (let i = 0; i < 4; i++) {
+      items.push({
+        id: `negro-${i}`,
+        position: generarPosicionAlFondo(),
+        colorFijo: "#222222",
+        esDinamico: false,
+        materialType: i === 0 ? "metal" : (i % 2 === 0 ? "plastic" : "matte"),
+      });
+    }
+
     return items;
-  }, [CANTIDAD_ITEMS]);
+  }, []); // 🔒 Array vacío: JAMÁS se vuelve a calcular ni a reiniciar
 
   return (
     <>
-      {jacksAleatorios.map((jack) => (
-        <JackFisico
-          key={jack.id}
-          scene={scene}
-          color={jack.color}
-          position={jack.position}
-          materialType={jack.materialType}
-          scale={3.2}
-        />
-      ))}
+      {estructuraBase.map((jack) => {
+        // 2. 🎨 ASIGNAMOS EL COLOR EN CALIENTE DURANTE EL RENDER
+        // Si la pieza es dinámica usa el estado actual, si no, usa su color fijo (blanco/negro)
+        const colorActual = jack.esDinamico ? colorPrincipal : jack.colorFijo;
+
+        return (
+          <JackFisico
+            key={jack.id}
+            scene={scene}
+            color={colorActual} // 👈 Cambia el color pero NO la física ni la posición
+            position={jack.position}
+            materialType={jack.materialType}
+            scale={3.2}
+          />
+        );
+      })}
     </>
   );
 }

@@ -1,12 +1,14 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+import { ColorProvider } from "./context/ColorContext";
 
-
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <main className="bg-background text-foreground min-h-screen px-6">
-      <App />
-    </main>
+    <ColorProvider>
+      <main className="bg-background text-foreground min-h-screen">
+        <App />
+      </main>
+    </ColorProvider>
   </StrictMode>,
-)
+);

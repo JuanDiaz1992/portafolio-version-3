@@ -24,6 +24,7 @@ import { motion } from "framer-motion";
 import { Suspense } from "react";
 import { useGLTF } from "@react-three/drei";
 import Viewer3d from "./ThreeJsVisor/Viewer3d";
+import { useColor } from "../../context/ColorContext";
 
 useGLTF.preload("/3d/Robot-final.glb");
 
@@ -31,6 +32,7 @@ const logo = "/img/newHome/section1/Logo-JuanDiaz-4.webp";
 const logoFondo = "/img/newHome/section1/LogofondoClaro.webp";
 
 export default function Section1() {
+  const { colorPrincipal } = useColor();
   const skills = [
     [<FaJs />, "JavaScript"],
     [<FaReact />, "React JS"],
@@ -53,8 +55,7 @@ export default function Section1() {
     animate: { opacity: 1, x: 0 },
   };
 
-  const cardBaseStyle =
-    "rounded-[20px] t";
+  const cardBaseStyle = "rounded-[20px] t";
 
   return (
     <>
@@ -81,8 +82,9 @@ export default function Section1() {
               ease: "linear",
             }}
           >
+
             <motion.img
-              className="max-w-[180px] lg:max-w-full inline-block align-middle z-2"
+              className="max-w-45 lg:max-w-full inline-block align-middle z-4"
               src={logo}
               alt="logo"
               initial={{ y: -30, opacity: 0 }}
@@ -148,27 +150,22 @@ export default function Section1() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 w-full lg:w-[75%] h-auto lg:h-full">
-          <div className="flex flex-col sm:flex-row gap-6 h-auto lg:h-[38%] w-full">
-            <div
-              className={`${cardBaseStyle} bg-white dark:bg-zinc-900 border border-black/3 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex flex-col justify-center items-start p-6 h-auto sm:h-full w-full sm:w-[35%] lg:w-[30%]`}
-            >
-              <h1 className="text-xl lg:text-2xl font-bold tracking-tight text-foreground">
-                Desarrollador de software
-              </h1>
-              <p className="text-zinc-500 dark:text-zinc-400 mt-2 text-xs lg:text-sm font-medium leading-relaxed">
-                ¡Hola👋! Bienvenido a mi portafolio. Soy Juan Díaz. Me
-                especializo en el ciclo completo de creación de software: desde
-                la arquitectura técnica hasta el diseño de la interfaz,
-                asegurando que cada producto sea tan funcional como intuitivo.
-              </p>
+        <div className="flex flex-col gap-6 w-full lg:w-[75%] h-auto lg:h-full justify-between">
+          <div className="flex flex-col sm:flex-row gap-6 h-auto lg:h-[38%] w-full relative">
+            <div className="absolute bottom-5 left-5 z-10 w-sm text-white">
+              <div className="p-6 bg-white/10 backdrop-blur-md rounded-xl">
+                <h1 className="text-xl lg:text-2xl font-bold tracking-tight ">
+                  Desarrollador de software
+                </h1>
+                <p className=" mt-2 text-xs lg:text-sm font-medium leading-relaxed">
+                  ¡Hola👋! Bienvenido a mi portafolio. Soy Juan Díaz. Me
+                  especializo en el ciclo completo de creación de software:
+                  desde la arquitectura técnica hasta el diseño de la interfaz,
+                  asegurando que cada producto sea tan funcional como intuitivo.
+                </p>
+              </div>
             </div>
-
-            <div
-              className={`${cardBaseStyle}  shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex items-center justify-center bg-cover bg-center  h-auto w-full sm:w-[65%] lg:w-[67%]`}
-            >
-              <Viewer3d />
-            </div>
+            <Viewer3d colorPrincipal={colorPrincipal} />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 h-112.5 sm:h-162.5 lg:h-[58%] w-full">
