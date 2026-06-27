@@ -38,3 +38,20 @@
   scrollbar-width: thin;
   scrollbar-color: #3f3f46 #121214;
 }
+
+
+/* Ocultar botones de descarga y PiP nativos en navegadores basados en Chromium */
+video::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}

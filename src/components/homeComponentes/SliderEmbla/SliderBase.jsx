@@ -19,7 +19,7 @@ export default function SliderBase({ children, options = { loop: true, axis: "y"
       <NextButton
         onClick={onNextButtonClick}
         disabled={nextBtnDisabled}
-        className="absolute bottom-4 right-9 -translate-x-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 text-white shadow-lg opacity-0 group-hover:opacity-100 disabled:opacity-0 rotate-90"
+        className="absolute bottom-4 right-9 -translate-x-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-300 text-white shadow-lg  rotate-90"
       />
 
       <div

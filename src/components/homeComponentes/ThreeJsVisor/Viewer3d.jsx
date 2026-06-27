@@ -1,8 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment, useProgress } from "@react-three/drei";
+import { OrbitControls, Environment } from "@react-three/drei";
 import { Physics, RigidBody, CuboidCollider } from "@react-three/rapier";
-import { Spinner } from "@heroui/react";
 import Abstract from "./abstract/Abstract";
 import PostProcessingEffects from "./PostProcessingEffects";
 import { useColor } from "../../../context/ColorContext";
@@ -27,34 +26,15 @@ function CameraCollider() {
 }
 
 export default function Viewer3d() {
-  const { colorPrincipal } = useColor()
-  const { active } = useProgress();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!active) {
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 800);
-      return () => clearTimeout(timer);
-    } else {
-      setLoading(true);
-    }
-  }, [active]);
+  const { colorPrincipal } = useColor();
 
   return (
     <div
-      className="w-full h-full rounded-3xl overflow-hidden relative"
+      className="w-full h-full md:h-112.5 lg:h-full rounded-3xl overflow-hidden relative"
       style={{
         background: `radial-gradient(circle at center, ${colorPrincipal} -90%, #000000 70%)`,
       }}
     >
-      {loading && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-[#0a1724]/90 backdrop-blur-md rounded-3xl transition-opacity duration-300">
-          <Spinner size="xl" color="current" className="text-[#00e1ff]" />
-        </div>
-      )}
-
       <Canvas
         camera={{ position: [0.15, 1.1, 7.5], fov: 30 }}
         dpr={[1, 2]}
@@ -62,6 +42,8 @@ export default function Viewer3d() {
           antialias: false,
           powerPreference: "high-performance",
         }}
+        /* 🌟 Sobrescribimos el div relativo inyectando 100% real al canvas */
+        style={{ width: "100%", height: "100%", display: "block" }}
       >
         <ambientLight intensity={0.15} color={colorPrincipal} />
         <hemisphereLight args={[0xffffff, 0x111115, 0.4]} />
@@ -72,7 +54,6 @@ export default function Viewer3d() {
           color="#ffffff"
         />
 
-        {/* Luz de apoyo suave desde abajo para que las sombras negras no sean un pozo ciego */}
         <directionalLight intensity={0.3} position={[0, -5, 2]} />
         <pointLight
           intensity={0.8}

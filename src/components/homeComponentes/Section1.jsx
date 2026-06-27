@@ -1,30 +1,13 @@
 import { Tooltip } from "@heroui/react";
-import {
-  FaPython,
-  FaJs,
-  FaReact,
-  FaPhp,
-  FaFigma,
-  FaLinkedin,
-  FaGithub,
-  FaWordpress,
-  FaCss3,
-  FaHtml5,
-} from "react-icons/fa";
-import {
-  SiDjango,
-  SiGmail,
-  SiWhatsapp,
-  SiSpringboot,
-  SiExpo,
-} from "react-icons/si";
-import { TbBrandAdobeIllustrator, TbBrandAdobePhotoshop } from "react-icons/tb";
-import Slider1 from "./Sliders/Slider1";
+import { FaJs, FaReact, FaPhp, FaHtml5, FaCss3, FaWordpress, FaGithub, FaFigma, FaLinkedin  } from "react-icons/fa";
+import { SiExpo, SiSpringboot, SiGmail, SiWhatsapp, SiGsap  } from "react-icons/si";
+import { SiFramer } from "react-icons/si";
+import { BiLogoBlender } from "react-icons/bi";
 import { motion } from "framer-motion";
-import { Suspense } from "react";
 import { useGLTF } from "@react-three/drei";
 import Viewer3d from "./ThreeJsVisor/Viewer3d";
 import { useColor } from "../../context/ColorContext";
+import CardEfect from "../CardEfect";
 
 useGLTF.preload("/3d/Robot-final.glb");
 
@@ -33,22 +16,21 @@ const logoFondo = "/img/newHome/section1/LogofondoClaro.webp";
 
 export default function Section1() {
   const { colorPrincipal } = useColor();
-  const skills = [
-    [<FaJs />, "JavaScript"],
-    [<FaReact />, "React JS"],
-    [<SiExpo />, "React Native Expo"],
-    [<SiSpringboot />, "Spring Boot"],
-    [<FaPhp />, "PHP"],
-    [<FaPython />, "Python"],
-    [<SiDjango />, "Django"],
-    [<FaHtml5 />, "HTML 5"],
-    [<FaCss3 />, "CSS3"],
-    [<FaWordpress />, "Wordpress"],
-    [<FaGithub />, "GitHub"],
-    [<FaFigma />, "Figma"],
-    [<TbBrandAdobePhotoshop />, "Photoshop"],
-    [<TbBrandAdobeIllustrator />, "Illustrator"],
-  ];
+const skills = [
+  [<FaJs />, "JavaScript"],
+  [<FaReact />, "React JS"],
+  [<SiExpo />, "React Native Expo"],
+  [<SiSpringboot />, "Spring Boot"],
+  [<FaPhp />, "PHP"],
+  [<FaHtml5 />, "HTML 5"],
+  [<FaCss3 />, "CSS3"],
+  [<FaWordpress />, "Wordpress"],
+  [<FaGithub />, "GitHub"],
+  [<FaFigma />, "Figma"],
+  [<SiGsap  />, "GSAP"],
+  [<SiFramer />, "Framer Motion"],
+  [<BiLogoBlender />, "Blender"],
+];
 
   const animationVariants = {
     initial: { opacity: 0, x: -100 },
@@ -60,7 +42,7 @@ export default function Section1() {
   return (
     <>
       <motion.section
-        className="w-full max-w-[1600px] mx-auto pt-8.75 gap-6 flex flex-col lg:flex-row justify-center min-h-[930px] lg:h-screen px-4 lg:px-0"
+        className="w-full mx-auto pt-8.75 gap-6 flex flex-col lg:flex-row justify-center min-h-232.5 lg:h-screen px-6"
         initial="initial"
         animate="animate"
         variants={animationVariants}
@@ -72,7 +54,7 @@ export default function Section1() {
       >
         <div className="flex flex-col sm:flex-row lg:flex-col w-full lg:w-[23%] gap-6 h-auto lg:h-full">
           <motion.div
-            className={`${cardBaseStyle} bg-[#0a1724] relative flex justify-center items-start overflow-hidden px-8 pt-12 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] h-[250px] sm:h-[250px] lg:h-[60%] w-full sm:w-1/2 lg:w-full`}
+            className={`${cardBaseStyle} bg-[#0a1724] relative flex justify-center items-start overflow-hidden px-8 pt-12 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] h-62.5 sm:h-62.5 lg:h-[60%] w-full sm:w-1/2 lg:w-full`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -82,7 +64,6 @@ export default function Section1() {
               ease: "linear",
             }}
           >
-
             <motion.img
               className="max-w-45 lg:max-w-full inline-block align-middle z-4"
               src={logo}
@@ -151,35 +132,24 @@ export default function Section1() {
         </div>
 
         <div className="flex flex-col gap-6 w-full lg:w-[75%] h-auto lg:h-full justify-between">
-          <div className="flex flex-col sm:flex-row gap-6 h-auto lg:h-[38%] w-full relative">
-            <div className="absolute bottom-5 left-5 z-10 w-sm text-white">
-              <div className="p-6 bg-white/10 backdrop-blur-md rounded-xl">
+          <div className="flex flex-col md:flex-row gap-6 h-120 md:h-auto md:min-h-75 lg:h-[38%] w-full relative">
+            <div className="absolute bottom-5 left-5 right-5 md:right-auto z-10 max-w-full md:max-w-sm text-white">
+              <div className="p-6 bg-black/40 md:bg-white/10 backdrop-blur-md rounded-xl">
                 <h1 className="text-xl lg:text-2xl font-bold tracking-tight ">
                   Desarrollador de software
                 </h1>
                 <p className=" mt-2 text-xs lg:text-sm font-medium leading-relaxed">
-                  ¡Hola👋! Bienvenido a mi portafolio. Soy Juan Díaz. Me
-                  especializo en el ciclo completo de creación de software:
-                  desde la arquitectura técnica hasta el diseño de la interfaz,
+                  Bienvenido a mi portafolio. Soy Juan Díaz. Me especializo en
+                  el ciclo completo de creación de software: desde la
+                  arquitectura técnica hasta el diseño de la interfaz,
                   asegurando que cada producto sea tan funcional como intuitivo.
                 </p>
               </div>
             </div>
             <Viewer3d colorPrincipal={colorPrincipal} />
           </div>
-
-          <div className="flex flex-col sm:flex-row gap-6 h-112.5 sm:h-162.5 lg:h-[58%] w-full">
-            <div
-              className={`${cardBaseStyle} bg-[#edeef0] dark:bg-zinc-800/50 border border-black/5 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] overflow-hidden h-full w-full sm:w-[65%] lg:w-[67%]`}
-            >
-              <Suspense
-                fallback={
-                  <div className="p-5 text-foreground">Cargando slider...</div>
-                }
-              >
-                <Slider1 />
-              </Suspense>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-6 md:h-112.5 sm:h-162.5 lg:h-[58%] w-full">
+            <CardEfect />
 
             <div
               className={`${cardBaseStyle} border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex flex-col bg-cover bg-center h-full w-full sm:w-[35%] lg:w-[30%] p-5 lg:p-6`}
@@ -187,14 +157,11 @@ export default function Section1() {
                 backgroundImage: "url(/img/newHome/section1/Background3.webp)",
               }}
             >
-              {/* Contenedor adaptado al espacio vertical de la tarjeta */}
               <div className="flex flex-col items-center w-full h-full justify-start overflow-hidden">
-                {/* Título de la tarjeta */}
                 <h2 className="text-white mb-5 lg:mb-6 text-lg lg:text-xl font-semibold border-b border-white/10 w-full text-center pb-2">
                   Tecnologías
                 </h2>
 
-                {/* Grid vertical con scroll interno sutil sobre la imagen de fondo */}
                 <div className="grid grid-cols-3 gap-y-6 gap-x-4 justify-items-center items-center w-full overflow-y-auto max-h-[85%] py-2 pr-1 no-scrollbar">
                   {skills.map((skill) => (
                     <div
