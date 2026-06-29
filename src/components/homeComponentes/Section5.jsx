@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button, Tooltip } from "@heroui/react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
+import { FaWordpress } from "react-icons/fa";
 import ViewerDron from "./ThreeJsVisor/ViewerDron";
 import CatleyaSlider from "./Sliders/CatleyaSlider";
 import { TbBrandNextjs } from "react-icons/tb";
@@ -10,8 +11,9 @@ import gsap from "gsap";
 const cvJuanDiaz = "/Documentos/Juan Camilo Diaz Valencia HV.pdf";
 const invisualSign = "/img/newHome/section2/invisualSign.webp";
 const invisualSignM = "/img/newHome/section2/invisualSign-m.webp";
+const tech = "/img/newHome/wordpressSection/tech-camp-explorers.webp";
 
-export default function Section5({ visiteWeb }) {
+export default function Section5() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const targetRef = useRef(null);
@@ -146,9 +148,18 @@ export default function Section5({ visiteWeb }) {
                   rendimiento como por su estética.
                 </p>
                 <Button
-                  onClick={() => visiteWeb(cvJuanDiaz)}
-                  color="primary"
-                  aria-label="Download CV"
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = cvJuanDiaz;
+                    link.download = "Juan_Camilo_Diaz_Valencia_HV.pdf";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  color="default"
+                  variant="bordered"
+                  className="border-white/20 text-white hover:bg-white/10 transition-colors"
+                  aria-label="Descargar CV"
                 >
                   Descargar CV
                 </Button>
@@ -162,14 +173,13 @@ export default function Section5({ visiteWeb }) {
               style={{ "--hud-glow-color": colorPrincipal || "#00aaff" }}
             >
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-80 sm:h-80 pointer-events-none select-none z-0 mix-blend-screen opacity-40">
-                {/* Resplandor radial exterior suave */}
                 <div
                   className="absolute inset-0 rounded-full blur-[60px] animate-[pulse_4s_infinite_alternate]"
                   style={{
                     background: `radial-gradient(circle, var(--hud-glow-color) 0%, transparent 70%)`,
                   }}
                 />
-                <div className="absolute inset-8 rounded-full border-2 border-dashed border-[var(--hud-glow-color)]/20 blur-[2px] animate-[spin_40s_linear_infinite]" />
+                <div className="absolute inset-8 rounded-full border-2 border-dashed border-(--hud-glow-color)/20 blur-[2px] animate-[spin_40s_linear_infinite]" />
                 <div
                   className="absolute inset-24 rounded-full blur-[20px] opacity-60"
                   style={{
@@ -280,7 +290,6 @@ export default function Section5({ visiteWeb }) {
                   </div>
                 </div>
 
-                {/* Fila Inferior: Barra de carga que reacciona de forma interactiva */}
                 <div className="w-full flex flex-col gap-1.5 backdrop-blur-[2px] bg-black/20 p-2.5 rounded border border-white/5 relative z-20">
                   <span className="absolute top-0 left-2 text-[8px] text-white/10">
                     ▲ HANGAR_SYSTEMS_ACTIVE
@@ -308,7 +317,6 @@ export default function Section5({ visiteWeb }) {
                       style={{
                         transform: "scaleX(0)",
                         willChange: "transform",
-                        // Ajustamos el degradado para que use de forma elegante tu color global
                         background: `linear-gradient(90deg, var(--hud-glow-color) 0%, #ffffff 100%)`,
                       }}
                     />
@@ -316,7 +324,6 @@ export default function Section5({ visiteWeb }) {
                 </div>
               </div>
 
-              {/* Contenedor del Dron que saldrá volando libremente */}
               <div className="marker w-full h-full relative rounded-4xl z-50">
                 <div
                   className="w-full h-full relative pointer-events-none"
@@ -336,76 +343,103 @@ export default function Section5({ visiteWeb }) {
             </div>
           </div>
         </div>
+<div
+      className="rounded-[20px] relative overflow-hidden border border-neutral-800/40 bg-[#0f0f11]/90 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] w-full h-112.5 lg:h-150"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* 🏙️ CAPA PARALAJE DESKTOP - Opacidad estática fija */}
+      <div
+        className="hidden md:block absolute top-[-10%] left-[-10%] w-[120%] h-[120%] pointer-events-none mix-blend-screen opacity-40"
+        style={{
+          backgroundImage: `url(${invisualSign})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)`,
+          transition: "transform 0.15s ease-out", // Solo se mueve el paralaje, no cambia la visibilidad
+        }}
+      />
 
-        <div
-          className={`rounded-[20px]  relative overflow-hidden border border-white/30 bg-[rgb(219,219,219)] shadow-[0_4px_20px_rgba(0,0,0,0.05)] w-full h-112.5 lg:h-150`}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            className="hidden md:block absolute top-[-10%] left-[-10%] w-[120%] h-[120%] pointer-events-none"
-            style={{
-              backgroundImage: `url(${invisualSign})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)`,
-              transition: "transform 0.15s ease-out",
-            }}
-          />
-          <div
-            className="block md:hidden absolute top-[-10%] left-[-10%] w-[120%] h-[120%] pointer-events-none"
-            style={{
-              backgroundImage: `url(${invisualSignM})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)`,
-              transition: "transform 0.15s ease-out",
-            }}
-          />
+      {/* 📱 CAPA PARALAJE MOBILE - Opacidad estática fija */}
+      <div
+        className="block md:hidden absolute top-[-10%] left-[-10%] w-[120%] h-[120%] pointer-events-none mix-blend-screen opacity-40"
+        style={{
+          backgroundImage: `url(${invisualSignM})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)`,
+          transition: "transform 0.15s ease-out",
+        }}
+      />
 
-          <div className="pointer-events-none relative z-10 flex h-full w-full items-start p-6 md:pt-10 md:ps-8">
-            <div className="pointer-events-auto max-md:flex max-md:flex-col max-md:justify-between max-md:h-full max-md:w-full">
-              <div>
-                <h2 className="inline-block bg-black px-2 py-1 font-sans text-white text-sm font-bold uppercase">
-                  Invisual Signs
-                </h2>
-                <h3 className="mt-2 mb-2 font-sans font-bold text-white text-xl">
-                  Vehicle Wrap Services
-                </h3>
-                <p className="w-full max-w-112.5 mb-6.25 text-white text-sm md:text-base leading-relaxed">
-                  Construí la plataforma web para InVisual Signs, enfocada en la
-                  presentación de sus servicios de branding y rotulación.
-                  Desarrollada con Next.js...
-                </p>
-              </div>
+      {/* Resplandor HUD sutil de fondo - Estático */}
+      <div 
+        className="absolute inset-0 opacity-5 pointer-events-none mix-blend-screen z-0"
+        style={{
+          background: `radial-gradient(circle at 10% 20%, ${colorPrincipal || "#fff"} 0%, transparent 45%)`
+        }}
+      />
 
-              <div className="flex gap-2">
-                <Button
-                  color="success"
-                  aria-label="invisual web"
-                  onClick={() => visiteWeb("https://invisualsign.com")}
-                >
-                  Ir a Invisual Signs
-                </Button>
-                <Tooltip content="Next Js" color="default">
+      {/* 📝 CONTENEDOR HUD DE TEXTO */}
+      <div className="pointer-events-none relative z-10 flex h-full w-full items-start p-6 md:pt-10 md:ps-8">
+        <div className="pointer-events-auto max-md:flex max-md:flex-col max-md:justify-between max-md:h-full max-md:w-full flex flex-col justify-between h-full">
+          
+          <div className="flex flex-col gap-3 items-start">
+            <h4
+              style={{ color: colorPrincipal || "#fff" }}
+              className="text-xs font-mono font-bold tracking-[0.2em] uppercase px-4 py-1 bg-black/90 backdrop-blur-md border border-white/5"
+            >
+              // INVISUAL SIGNS
+            </h4>
+            
+            <h3 className="text-white/90 text-2xl md:text-3xl font-bold tracking-tight font-sans mt-1">
+              Vehicle Wrap Services
+            </h3>
+            
+            <p className="w-full max-w-112.5 text-white/70 text-xs md:text-sm leading-relaxed mt-1">
+              Construí la plataforma web para InVisual Signs, enfocada en la
+              presentación de sus servicios premium de branding y rotulación vehicular.
+              Desarrollada con Next.js e implementando una arquitectura modular optimizada 
+              para tiempos de carga ultrarrápidos y un SEO impecable, reflejando la 
+              calidad visual de sus proyectos en carretera.
+            </p>
+          </div>
+
+          {/* 🔘 BOTONERA Y TECNOLOGÍAS */}
+          <div className="flex flex-wrap items-center gap-3 mt-6">
+            <Button
+              onClick={() => window.open("https://invisualsign.com", "_blank", "noopener,noreferrer")}
+              color="default"
+              variant="bordered"
+              className="border-white/20 text-white hover:bg-white/10 transition-colors pointer-events-auto"
+              aria-label="invisual web"
+            >
+              Ir a Invisual Signs
+            </Button>
+
+            <Tooltip delay={0}>
+              <Tooltip.Trigger>
+                <div role="button" tabIndex={0}>
                   <Button
                     isIconOnly
-                    color="primary"
+                    variant="flat"
+                    className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
                     aria-label="nextjs"
-                    className="cursor-default"
                   >
-                    <TbBrandNextjs size={30} />
+                    <TbBrandNextjs size={20} />
                   </Button>
-                </Tooltip>
-              </div>
-            </div>
+                </div>
+              </Tooltip.Trigger>
+              <Tooltip.Content showArrow offset={12}>
+                <Tooltip.Arrow />
+                <p className="text-sm font-medium">Next.js</p>
+              </Tooltip.Content>
+            </Tooltip>
           </div>
-        </div>
 
-        <div className="container second absolute left-0 top-0 opacity-0 pointer-events-none">
-          <div className="marker w-full h-full" />
         </div>
-
+      </div>
+    </div>
         <div className="w-full h-150 flex gap-6">
           <div
             ref={destinoRef}
@@ -490,7 +524,86 @@ export default function Section5({ visiteWeb }) {
             {/* El dron llegará flotando matemáticamente aquí gracias a GSAP */}
           </div>
 
-          <div className="w-[60%] bg-black/30 rounded-[20px]"></div>
+          <div className="w-[60%] bg-[#0f0f11]/80 border border-neutral-800/40 rounded-[20px] backdrop-blur-md overflow-hidden relative group flex flex-col justify-between min-h-[580px]">
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none mix-blend-screen transition-opacity group-hover:opacity-10 z-0"
+              style={{
+                background: `radial-gradient(circle at 50% 30%, ${colorPrincipal || "#fff"} 0%, transparent 60%)`,
+              }}
+            />
+            <div className="relative z-10 p-6 md:p-8 flex flex-col gap-4 items-start w-full mt-auto border-t border-white/5 bg-neutral-950/40 backdrop-blur-sm">
+              <div className="flex flex-col gap-1.5 items-start w-full">
+                <h4
+                  style={{ color: colorPrincipal || "#fff" }}
+                  className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-0.5 bg-black/90 border border-white/5"
+                >
+                  // TECH CAMP EXPLORERS
+                </h4>
+
+                <h3 className="text-white/90 text-xl md:text-2xl font-bold tracking-tight font-sans">
+                  Campamentos de tecnología
+                </h3>
+
+                <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-[650px] mt-1">
+                  Desarrollé la plataforma digital para Tech Camp Explorers, una
+                  academia tecnológica de verano. El reto principal fue
+                  estructurar una oferta educativa diversa (robótica VEX,
+                  Minecraft, Java) y segmentarla de manera intuitiva según
+                  edades y niveles de habilidad. Implementé una navegación
+                  fluida que guía al usuario desde la exploración de programas
+                  hasta la inscripción.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 w-full">
+                <Button
+                  onClick={() =>
+                    window.open(
+                      "https://techexplorerscamps.com",
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }
+                  color="default"
+                  variant="bordered"
+                  className="border-white/20 text-white hover:bg-white/10 transition-colors pointer-events-auto text-xs md:text-sm"
+                  aria-label="Ir a Tech Camp Explorers"
+                >
+                  Ir a Tech Camp Explorers
+                </Button>
+
+                <Tooltip delay={0}>
+                  <Tooltip.Trigger>
+                    <div role="button" tabIndex={0}>
+                      <Button
+                        isIconOnly
+                        variant="flat"
+                        className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                        aria-label="Wordpress / Elementor"
+                      >
+                        <FaWordpress size={18} />
+                      </Button>
+                    </div>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content showArrow offset={12}>
+                    <Tooltip.Arrow />
+                    <p className="text-sm font-medium">Wordpress / Elementor</p>
+                  </Tooltip.Content>
+                </Tooltip>
+              </div>
+            </div>
+
+            <div className="w-full flex justify-center items-center p-4 pt-6 z-10 select-none pointer-events-none">
+              <div className="w-[95%] md:w-[85%] max-w-130 aspect-video rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-neutral-800/30 bg-black/20">
+                <img
+                  src={tech}
+                  alt="Tech Camp Macbook Preview"
+                  className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                  draggable={false}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

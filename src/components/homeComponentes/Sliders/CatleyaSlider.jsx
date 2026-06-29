@@ -21,7 +21,6 @@ export default function CatleyaSlider() {
         <div className="absolute inset-0 opacity-15 pointer-events-none mix-blend-screen z-1" />
 
         <div className="relative z-10 p-6 md:p-10 flex flex-col lg:flex-row gap-8 items-center lg:items-start text-white h-full justify-center lg:justify-between w-full max-w-5xl mx-auto">
-          
           {/* Bloque de Textos y Datos */}
           <div className="flex flex-col gap-3 items-start max-w-xl">
             <h2
@@ -34,14 +33,27 @@ export default function CatleyaSlider() {
               Servicios de Alojamiento
             </h3>
             <p className="text-white/70 text-xs md:text-sm leading-relaxed max-w-xl">
-              Desarrollé la plataforma web integral para Catleya Royal Club, un proyecto que integra una experiencia de usuario de alto nivel con un sistema complejo de gestión hotelera. Como Frontend Developer, construí la interfaz completa utilizando React y Vite, enfocándome en la fluidez de la navegación y la seguridad en el flujo de pagos. Trabajé en estrecha colaboración con el equipo de backend (Laravel) para asegurar una integración eficiente de los datos, logrando una interfaz rápida, intuitiva y a la altura de la exclusividad del hotel.
+              Desarrollé la plataforma web integral para Catleya Royal Club, un
+              proyecto que integra una experiencia de usuario de alto nivel con
+              un sistema complejo de gestión hotelera. Como Frontend Developer,
+              construí la interfaz completa utilizando React y Vite, enfocándome
+              en la fluidez de la navegación y la seguridad en el flujo de
+              pagos. Trabajé en estrecha colaboración con el equipo de backend
+              (Laravel) para asegurar una integración eficiente de los datos,
+              logrando una interfaz rápida, intuitiva y a la altura de la
+              exclusividad del hotel.
             </p>
 
             {/* Acciones y Tecnologías */}
             <div className="flex items-center gap-3 mt-4">
               <Button
-                as="a"
-                href="https://catleyaroyalclub.com"
+                onClick={() =>
+                  window.open(
+                    "https://catleyaroyalclub.com",
+                    "_blank",
+                    "noopener,noreferrer",
+                  )
+                }
                 color="default"
                 variant="bordered"
                 className="border-white/20 text-white hover:bg-white/10 transition-colors"
@@ -94,12 +106,12 @@ export default function CatleyaSlider() {
 
           {/* Espacio del Logo lateral derecho (solo visible en pantallas grandes) */}
           <div className="hidden lg:flex items-center justify-center h-full max-w-xs opacity-80 hover:opacity-100 transition-opacity">
-            <img 
-              src={logo} 
-              alt="Catleya Logo" 
-              className="w-48 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" 
-              draggable={false} 
-              onDragStart={(e) => e.preventDefault()} 
+            <img
+              src={logo}
+              alt="Catleya Logo"
+              className="w-48 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+              draggable={false}
+              onDragStart={(e) => e.preventDefault()}
             />
           </div>
         </div>

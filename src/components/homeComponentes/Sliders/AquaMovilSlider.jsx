@@ -68,8 +68,13 @@ export default function AquaMovilSlider() {
 
           <div className="flex flex-wrap items-center gap-3 mt-2">
             <Button
-              as="a"
-              href="https://aquamovildesk.com/"
+              onClick={() =>
+                  window.open(
+                    "https://aquamovildesk.com/",
+                    "_blank",
+                    "noopener,noreferrer",
+                  )
+                }
               size="sm"
               className="font-semibold text-white shadow-lg shadow-emerald-950/50 bg-emerald-600 hover:bg-emerald-500 transition-colors"
               aria-label="Visitar AquaMovil"
