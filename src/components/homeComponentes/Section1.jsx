@@ -5,7 +5,7 @@ import { SiFramer } from "react-icons/si";
 import { BiLogoBlender } from "react-icons/bi";
 import { motion } from "framer-motion";
 import { useGLTF } from "@react-three/drei";
-import Viewer3d from "./ThreeJsVisor/Viewer3d";
+import Viewer3d from "./ThreeJsVisor/Viewer3dAbstract";
 import { useColor } from "../../context/ColorContext";
 import CardEfect from "../CardEfect";
 
