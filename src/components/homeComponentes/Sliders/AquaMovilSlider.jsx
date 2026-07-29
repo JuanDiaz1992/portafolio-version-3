@@ -4,7 +4,7 @@ import { FaReact } from "react-icons/fa";
 import { SiSpring } from "react-icons/si";
 import { useColor } from "../../../context/ColorContext";
 
-import SliderBase from "../SliderEmbla/SliderBase";
+import SliderBase from "../../sliderEmbla/SliderBase";
 
 const imgBaseDesktop = "/img/newHome/section2/aquamovil.webp";
 const imgBaseMobile = "/img/newHome/section2/aquamovil-m.webp";
@@ -58,7 +58,7 @@ export default function AquaMovilSlider() {
             // ECOSISTEMA INTEGRADO
           </h2>
           <h3 className="text-3xl md:text-4xl font-bold tracking-tight font-['Antonio',sans-serif] text-black/80">
-            AquaMovil
+            Sistema de Gestión & Captura
           </h3>
           <p className="text-black/80  text-xs md:text-sm leading-relaxed max-w-md">
             Desarrollo de un ecosistema compuesto por una App móvil de captura
@@ -69,17 +69,17 @@ export default function AquaMovilSlider() {
           <div className="flex flex-wrap items-center gap-3 mt-2">
             <Button
               onClick={() =>
-                  window.open(
-                    "https://aquamovildesk.com/",
-                    "_blank",
-                    "noopener,noreferrer",
-                  )
-                }
+                window.open(
+                  "https://aquamovildesk.com/",
+                  "_blank",
+                  "noopener,noreferrer",
+                )
+              }
               size="sm"
-              className="font-semibold text-white shadow-lg shadow-emerald-950/50 bg-emerald-600 hover:bg-emerald-500 transition-colors"
-              aria-label="Visitar AquaMovil"
+              className="font-semibold text-white shadow-lg shadow-emerald-950/50 bg-emerald-600 hover:bg-emerald-500 transition-colors pointer-events-auto cursor-pointer"
+              aria-label="Visitar demo de la plataforma"
             >
-              Ir a AquaMovilDesk
+              Ver Proyecto en Vivo ↗
             </Button>
 
             <div className="flex gap-1.5 bg-neutral-950/80 p-1 rounded-xl border border-neutral-800/80 backdrop-blur-sm">

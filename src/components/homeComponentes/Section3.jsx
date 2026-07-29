@@ -1,35 +1,100 @@
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { useColor } from "../../context/ColorContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Section3() {
   const containerRef = useRef(null);
   const { setIntensidadMarco } = useColor();
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0 && latest < 1) {
-      setIntensidadMarco(0);
-    } else {
-      setIntensidadMarco(1);
-    }
-  });
-
+  // Ref para almacenar la función sin provocar que useGSAP destruya la timeline
+  const setIntensidadRef = useRef(setIntensidadMarco);
   useEffect(() => {
-    return () => setIntensidadMarco(1);
+    setIntensidadRef.current = setIntensidadMarco;
   }, [setIntensidadMarco]);
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 0.8, 1], [1, 4, 12, 85]);
+  // Ref para controlar que el estado solo cambie 1 vez al entrar/salir (evita re-renders en loop)
+  const isInsideRef = useRef(false);
 
-  const opacityElements = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const opacitiFinalText = useTransform(
-    scrollYProgress,
-    [0, 0.5, 0.8, 1],
-    [1, 1, 1, 0],
+  useEffect(() => {
+    return () => {
+      if (setIntensidadRef.current) {
+        setIntensidadRef.current(1);
+      }
+    };
+  }, []);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          onUpdate: (self) => {
+            const isInside = self.progress > 0 && self.progress < 1;
+            // Solo actualizamos React si el estado realmente cambió
+            if (isInside !== isInsideRef.current) {
+              isInsideRef.current = isInside;
+              if (setIntensidadRef.current) {
+                setIntensidadRef.current(isInside ? 0 : 1);
+              }
+            }
+          },
+          onLeave: () => {
+            isInsideRef.current = false;
+            if (setIntensidadRef.current) setIntensidadRef.current(1);
+          },
+          onLeaveBack: () => {
+            isInsideRef.current = false;
+            if (setIntensidadRef.current) setIntensidadRef.current(1);
+          },
+        },
+      });
+
+      // 1. Texto superior: desvanecimiento constante de 0 a 0.15 de scroll
+      tl.fromTo(
+        ".texto-top-sec3",
+        { opacity: 1 },
+        { opacity: 0, duration: 0.15, ease: "none" },
+        0
+      );
+
+      // 2. Zoom al Texto PORTAFOLIO (Escala fluida 100% lineal sin frenos)
+      // Tramo 1: del 0% al 50% del scroll -> escala de 1 a 4
+      tl.to(
+        ".texto-zoom-sec3",
+        { scale: 4, duration: 0.5, ease: "none", force3D: false },
+        0
+      );
+
+      // Tramo 2: del 50% al 80% del scroll -> escala de 4 a 12
+      tl.to(
+        ".texto-zoom-sec3",
+        { scale: 12, duration: 0.3, ease: "none", force3D: false },
+        0.5
+      );
+
+      // Tramo 3: del 80% al 100% del scroll -> escala de 12 a 85
+      tl.to(
+        ".texto-zoom-sec3",
+        { scale: 85, duration: 0.2, ease: "none", force3D: false },
+        0.8
+      );
+
+      // 3. Texto inferior: desvanecimiento de 0.8 a 1.0 del scroll
+      tl.fromTo(
+        ".texto-bottom-sec3",
+        { opacity: 1 },
+        { opacity: 0, duration: 0.2, ease: "none" },
+        0.8
+      );
+    },
+    { scope: containerRef, dependencies: [] }
   );
 
   return (
@@ -40,28 +105,19 @@ export default function Section3() {
       />
 
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white px-4">
-        <motion.span
-          style={{ opacity: opacityElements }}
-          className="absolute top-12 font-mono text-md  md:text-xl lg:text-xs tracking-[0.2em] text-neutral-400 uppercase select-none"
-        >
+        <span className="texto-top-sec3 absolute top-12 font-mono text-md md:text-xl lg:text-xs tracking-[0.2em] text-neutral-400 uppercase select-none">
           [ SELECTED WORKS // 2024 - 2026 ]
-        </motion.span>
+        </span>
 
-        <motion.div
-          style={{ scale }}
-          className="flex items-center justify-center font-bold text-black uppercase select-none font-['Antonio',Impact,sans-serif] text-center text-[11vh] md:text-[20vh] lg:text-[45vh] leading-none tracking-tighter origin-center"
-        >
+        <div className="texto-zoom-sec3 flex items-center justify-center font-bold text-black uppercase select-none font-['Antonio',Impact,sans-serif] text-center text-[11vh] md:text-[20vh] lg:text-[45vh] leading-none tracking-tighter origin-center">
           <span>PORT</span>
-          <span style={{ transformOrigin: "center" }}>A</span>
+          <span className="origin-center">A</span>
           <span>FOLIO</span>
-        </motion.div>
+        </div>
 
-        <motion.span
-          style={{ opacity: opacitiFinalText }}
-          className="absolute bottom-12 font-sans text-md  md:text-xl lg:text-xs font-semibold tracking-[0.15em] text-neutral-500 uppercase select-none text-center"
-        >
+        <span className="texto-bottom-sec3 absolute bottom-12 font-sans text-md md:text-xl lg:text-xs font-semibold tracking-[0.15em] text-neutral-500 uppercase select-none text-center">
           Scroll para revelar la experiencia
-        </motion.span>
+        </span>
       </div>
     </div>
   );

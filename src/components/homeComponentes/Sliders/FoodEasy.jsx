@@ -2,7 +2,7 @@ import { Button, Tooltip } from "@heroui/react";
 import { FaReact } from "react-icons/fa";
 import { SiPhp } from "react-icons/si";
 import { useColor } from "../../../context/ColorContext";
-import SliderBase from "../SliderEmbla/SliderBase";
+import SliderBase from "../../sliderEmbla/SliderBase";
 
 const video = "/img/newHome/section2/foodEasy.mp4";
 const imgDesktop = "/img/newHome/section2/foodEasy.webp";
