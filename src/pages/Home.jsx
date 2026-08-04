@@ -9,6 +9,8 @@ const Section4 = lazy(() => import("../components/homeComponentes/Section4"));
 const Section5 = lazy(() => import("../components/homeComponentes/Section5"));
 const Section6 = lazy(() => import("../components/homeComponentes/Section6"));
 const Section7 = lazy(() => import("../components/homeComponentes/Section7"));
+const Section8 = lazy(() => import("../components/homeComponentes/Section8"));
+const Footer = lazy(() => import("../components/Footer"));
 
 export default function Home() {
   return (
@@ -34,6 +36,14 @@ export default function Home() {
 
       <PreloadOnScroll offset="800px">
         <Section7 />
+      </PreloadOnScroll>
+
+      <PreloadOnScroll offset="800px">
+        <Section8 />
+      </PreloadOnScroll>
+
+      <PreloadOnScroll offset="800px">
+        <Footer />
       </PreloadOnScroll>
     </>
   );

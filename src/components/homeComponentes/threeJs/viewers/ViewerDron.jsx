@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
-import Dron from "../Objects3D/Dron";
+import Dron from "../objects3D/Dron";
 import PostProcessingReutilizable from "../postProcessing/PostProcessingReutilizable";
 
 export default function ViewerDron({ progress = 0 }) {

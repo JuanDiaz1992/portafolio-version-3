@@ -13,20 +13,12 @@ const woman = "/img/newHome/section3/dani.webp";
 const plants = "/img/newHome/section3/daniPlants.webp";
 const dbank = "/img/newHome/section3/dbank.webp";
 
-export default function Section7({ visiteWeb }) {
+export default function Section7() {
   const { colorPrincipal } = useColor();
   const sectionRef = useRef(null);
   const dbankContainerRef = useRef(null);
   const card2Ref = useRef(null);
   const plantsRef = useRef(null);
-
-  const handleVisit = (url) => {
-    if (visiteWeb) {
-      visiteWeb(url);
-    } else {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -153,13 +145,13 @@ export default function Section7({ visiteWeb }) {
         {/* ================= DIV 2: MANGO BICHE MÍA (FifthSlider) ================= */}
         <div
           ref={card2Ref}
-          className="w-full lg:w-1/2 rounded-[20px] shadow-lg border border-white/20 overflow-hidden relative transition-all duration-400 ease-out hover:-translate-y-2 hover:shadow-2xl flex flex-col items-center justify-between bg-[#DDFCFF]"
+          className="w-full lg:w-1/2 rounded-[20px] shadow-lg border border-white/20 overflow-hidden relative flex flex-col items-center justify-between bg-[#DDFCFF]"
         >
           {/* Header Card (Texto y Botón) */}
           <div className="flex flex-col gap-2 z-20 w-full p-6 sm:p-8">
             <h4
               style={{ color: colorPrincipal || "#b45309" }}
-              className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-black/10 border border-black/10 w-fit rounded-xs text-black"
+              className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-black/70 border border-black/10 w-fit rounded-xs text-black"
             >
               // MANGO BICHE MÍA
             </h4>

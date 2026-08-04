@@ -12,6 +12,7 @@ import AquaMovilSlider from "./Sliders/AquaMovilSlider";
 
 export default function Section4() {
   const targetRef = useRef(null);
+  const lastIntensityRef = useRef(null);
   const { setIntensidadMarco } = useColor();
 
   const { scrollYProgress } = useScroll({
@@ -19,11 +20,14 @@ export default function Section4() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.05 && latest < 0.95) {
-      setIntensidadMarco(0);
-    } else {
-      setIntensidadMarco(1);
+    const nextIntensity = latest > 0.05 && latest < 0.95 ? 0 : 1;
+
+    if (lastIntensityRef.current === nextIntensity) {
+      return;
     }
+
+    lastIntensityRef.current = nextIntensity;
+    setIntensidadMarco(nextIntensity);
   });
 
   const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
