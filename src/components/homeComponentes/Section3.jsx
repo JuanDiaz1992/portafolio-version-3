@@ -94,7 +94,7 @@ export default function Section3() {
   );
 
   return (
-    <div ref={containerRef} id="portafolio" className="relative h-[400vh] bg-white z-40">
+    <div ref={containerRef} id="portafolio" className="relative h-[260vh] bg-white z-40">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white px-4">
         <div className="texto-zoom-sec3 flex items-center justify-center font-bold text-black uppercase select-none font-display text-center text-[11vh] md:text-[20vh] lg:text-[45vh] leading-none tracking-tighter origin-center">
           <span>PORT</span>

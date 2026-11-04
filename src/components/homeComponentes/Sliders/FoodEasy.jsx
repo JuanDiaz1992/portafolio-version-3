@@ -3,6 +3,7 @@ import { FaReact } from "react-icons/fa";
 import { SiPhp } from "react-icons/si";
 import { useColor } from "../../../context/ColorContext";
 import SliderBase from "../../sliderEmbla/SliderBase";
+import LazyVideo from "../../LazyVideo";
 
 const video = "/img/newHome/section2/foodEasy.mp4";
 const imgDesktop = "/img/newHome/section2/foodEasy.webp";
@@ -57,7 +58,7 @@ export default function FoodEasySlider() {
                     href="https://github.com/JuanDiaz1992/Gestor-Restaurante-Frontend"
                     isIconOnly
                     variant="flat"
-                    className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                    className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                     aria-label="Frontend"
                   >
                     <FaReact size={18} />
@@ -78,7 +79,7 @@ export default function FoodEasySlider() {
                     href="https://github.com/JuanDiaz1992/Gestor-Restaurante-Backend"
                     isIconOnly
                     variant="flat"
-                    className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                    className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                     aria-label="Backend"
                   >
                     <SiPhp size={22} />
@@ -128,19 +129,7 @@ export default function FoodEasySlider() {
         <div className="w-full max-w-[95%] md:max-w-[85%]  rounded-xl md:rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-neutral-800/50 bg-black z-10 relative">
           <div className="absolute inset-0 bg-neutral-950/10 z-2 pointer-events-none" />
 
-          <video
-            key={video}
-            loop
-            autoPlay
-            muted
-            playsInline
-            className="w-full h-full object-contain z-1"
-            controls={false}
-            disablePictureInPicture
-            webkit-playsinline="true"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
+          <LazyVideo key={video} src={video} className="w-full h-full object-contain z-1" />
         </div>
       </div>
     </SliderBase>

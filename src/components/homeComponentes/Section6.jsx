@@ -107,7 +107,7 @@ export default function Section6() {
   }, []);
 
   return (
-    <section className="bg-linear-to-b from-black to-white relative z-50 py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <section id="proyectos-web" className="bg-linear-to-b from-black to-white relative z-50 py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
       <div className="w-full flex flex-col lg:flex-row gap-8 items-stretch">
         <div className="flex-1 flex flex-col gap-8">
           {/* KPK */}

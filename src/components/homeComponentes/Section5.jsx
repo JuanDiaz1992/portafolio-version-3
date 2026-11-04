@@ -7,6 +7,7 @@ import CatleyaSlider from "./Sliders/CatleyaSlider";
 import { TbBrandNextjs } from "react-icons/tb";
 import { useColor } from "../../context/ColorContext";
 import gsap from "gsap";
+import LazyVideo from "../LazyVideo";
 
 const cvJuanDiaz = "/Documentos/Juan Camilo Diaz Valencia HV.pdf";
 const tech = "/img/newHome/wordpressSection/tech-camp-explorers.webp";
@@ -108,6 +109,7 @@ export default function Section5() {
   return (
     <>
       <section
+        id="sobre-mi"
         ref={targetRef}
         className="w-full mx-auto pt-8 gap-6 flex flex-col px-6 bg-black z-40 relative"
       >
@@ -241,18 +243,7 @@ export default function Section5() {
           />
 
           {/* VIDEO DE FONDO ESTÁTICO */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
-          >
-            <source
-              src="/img/newHome/wordpressSection/invisual.mp4"
-              type="video/mp4"
-            />
-          </video>
+          <LazyVideo src="/img/newHome/wordpressSection/invisual.mp4" className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0" />
 
           {/* CONTENIDO DENTRO DE CARD GLASSMORPHISM */}
           <div className="pointer-events-none relative z-20 flex h-full w-full items-center p-6 md:p-10">
@@ -295,7 +286,7 @@ export default function Section5() {
                       <Button
                         isIconOnly
                         variant="flat"
-                        className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                        className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                         aria-label="Next.js"
                       >
                         <TbBrandNextjs size={20} />
@@ -391,7 +382,7 @@ export default function Section5() {
             </div>
 
             {/* Información del Proyecto */}
-            <div className="relative z-10 p-5 sm:p-6 md:p-8 flex flex-col gap-4 items-start w-full md:mt-auto border-t border-white/5 bg-neutral-950/40 backdrop-blur-sm">
+            <div className="relative z-10 p-5 sm:p-6 md:p-8 flex flex-col gap-4 items-start w-full md:mt-auto border-t border-white/5 bg-neutral-950/40">
               <div className="flex flex-col gap-1.5 items-start w-full">
 
                 <h3 className="text-white/90 text-lg sm:text-xl md:text-2xl font-bold tracking-tight font-sans">
@@ -432,7 +423,7 @@ export default function Section5() {
                       <Button
                         isIconOnly
                         variant="flat"
-                        className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                        className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                         aria-label="Wordpress / Elementor"
                       >
                         <FaWordpress size={18} />

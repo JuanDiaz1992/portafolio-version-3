@@ -76,7 +76,7 @@ export default function AquaMovilSlider() {
               Ver Proyecto en Vivo ↗
             </Button>
 
-            <div className="flex gap-1.5 bg-neutral-950/80 p-1 rounded-xl border border-neutral-800/80 backdrop-blur-sm">
+            <div className="flex gap-1.5 bg-neutral-950/80 p-1 rounded-xl border border-neutral-800/80">
               <Tooltip delay={0}>
                 <Tooltip.Trigger>
                   <div className="p-2 text-neutral-400 hover:text-red-400 transition-colors">

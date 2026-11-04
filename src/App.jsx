@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Lenis } from "lenis/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ColorPicker from "./components/ColorPicker";
+import Navbar from "./components/Navbar";
 
 function App() {
   const reducirMovimiento =
@@ -49,6 +50,7 @@ function App() {
   }, []);
   const contenido = (
     <>
+      <Navbar />
       <Home />
       <MarcoCinematico />
       <ColorPicker />

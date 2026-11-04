@@ -100,8 +100,9 @@ export default function Section1() {
 
   return (
     <section
+      id="inicio"
       ref={containerRef}
-      className="section-container w-full mx-auto pt-8.75 gap-6 flex flex-col lg:flex-row justify-center min-h-232.5 lg:h-screen px-6"
+      className="section-container w-full mx-auto pt-20 gap-6 bg-black flex flex-col lg:flex-row justify-center min-h-232.5 lg:h-screen px-6"
     >
       <div className="flex flex-col sm:flex-row lg:flex-col w-full lg:w-[23%] gap-6 h-auto lg:h-full">
         {/* Contenedor Logo */}
@@ -124,7 +125,7 @@ export default function Section1() {
         </div>
 
         <div
-          className={`${cardBaseStyle} bg-white dark:bg-zinc-900 border border-black/3 dark:border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex items-center justify-center py-6 h-30 sm:h-62.5 lg:h-[40%] w-full sm:w-1/2 lg:w-full`}
+          className={`${cardBaseStyle} bg-zinc-900 border border-white/10 flex items-center justify-center py-6 h-30 sm:h-62.5 lg:h-[40%] w-full sm:w-1/2 lg:w-full`}
         >
           <div className="flex flex-wrap gap-6 justify-center items-center">
             {[
@@ -151,7 +152,7 @@ export default function Section1() {
             ].map((link, i) => (
               <div
                 key={i}
-                className="[&_svg]:text-zinc-500 [&_svg]:dark:text-zinc-400 [&_svg]:text-[32px] lg:[&_svg]:text-[36px] [&_svg]:transition-colors [&_svg]:duration-200 [&_svg]:hover:text-[#00e1ff]"
+                className="[&_svg]:text-zinc-400 [&_svg]:text-[32px] lg:[&_svg]:text-[36px] [&_svg]:transition-colors [&_svg]:duration-200 [&_svg]:hover:text-[#00e1ff]"
               >
                 <a
                   href={link.href}
@@ -173,13 +174,11 @@ export default function Section1() {
           <div className="absolute bottom-5 left-5 right-5 md:right-auto z-10 max-w-full md:max-w-sm text-white">
             <div className="p-6 bg-black/40 md:bg-white/10 backdrop-blur-md rounded-xl">
               <h1 className="font-display uppercase text-2xl lg:text-3xl font-bold tracking-tight">
-                Desarrollador de software
+                Si lleva código, lo construyo.
               </h1>
               <p className="mt-2 text-xs lg:text-sm font-medium leading-relaxed">
-                Bienvenido a mi portafolio. Soy Juan Díaz. Me especializo en el
-                ciclo completo de creación de software: desde la arquitectura
-                técnica hasta el diseño de la interfaz, asegurando que cada
-                producto sea tan funcional como intuitivo.
+                Soy Juan Díaz. Hago sitios web, aplicaciones móviles y sistemas a
+                medida: desde el diseño de la interfaz hasta el backend.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a
@@ -212,7 +211,7 @@ export default function Section1() {
           <CardEfect />
 
           <div
-            className={`${cardBaseStyle} border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex flex-col bg-cover bg-center h-full w-full sm:w-[35%] lg:w-[30%] p-5 lg:p-6`}
+            className={`${cardBaseStyle} border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] flex flex-col bg-cover bg-center h-96 sm:h-full w-full sm:w-[35%] lg:w-[30%] p-5 lg:p-6`}
             style={{
               backgroundImage: "url(/img/newHome/section1/Background3.webp)",
             }}
@@ -222,7 +221,14 @@ export default function Section1() {
                 Tecnologías
               </h2>
 
-              <div className="grid grid-cols-3 gap-y-6 gap-x-4 justify-items-center items-center w-full overflow-y-auto max-h-[85%] py-2 pr-1 no-scrollbar">
+              {/* Los iconos se escalan con el tamaño disponible (container query), sin scroll */}
+              <div
+                className="grid grid-cols-3 gap-x-2 justify-items-center items-center w-full flex-1 min-h-0"
+                style={{
+                  containerType: "size",
+                  gridTemplateRows: `repeat(${Math.ceil(skills.length / 3)}, minmax(0, 1fr))`,
+                }}
+              >
                 {skills.map((skill) => (
                   <div
                     key={skill[1]}
@@ -231,7 +237,12 @@ export default function Section1() {
                     <Tooltip delay={0}>
                       <Tooltip.Trigger>
                         <div
-                          className="text-white hover:text-[#00e1ff] flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md text-3xl lg:text-4xl p-2 rounded-xl bg-white/5 border border-white/5 hover:border-[#00e1ff]/30 w-14 h-14"
+                          className="text-white hover:text-[#00e1ff] flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md rounded-xl bg-white/5 border border-white/5 hover:border-[#00e1ff]/30"
+                          style={{
+                            width: "min(3.5rem, 15cqh, 28cqw)",
+                            aspectRatio: "1",
+                            fontSize: "min(2.25rem, 8cqh, 15cqw)",
+                          }}
                           role="img"
                           tabIndex={0}
                           aria-label={skill[1]}

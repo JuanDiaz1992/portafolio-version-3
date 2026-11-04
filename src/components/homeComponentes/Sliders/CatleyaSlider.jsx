@@ -55,7 +55,7 @@ export default function CatleyaSlider() {
                     <Button
                       isIconOnly
                       variant="flat"
-                      className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                      className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                       aria-label="Frontend"
                     >
                       <FaReact size={18} />
@@ -74,7 +74,7 @@ export default function CatleyaSlider() {
                     <Button
                       isIconOnly
                       variant="flat"
-                      className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors backdrop-blur-sm"
+                      className="bg-neutral-900/80 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
                       aria-label="Backend"
                     >
                       <SiLaravel size={18} />

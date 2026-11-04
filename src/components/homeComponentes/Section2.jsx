@@ -19,7 +19,7 @@ export default function Section2() {
         scrollTrigger: {
           trigger: trackRef.current,
           start: "top bottom", // Equivale al offset ["start end", "end start"] de Framer
-          end: "bottom top",
+          end: "bottom bottom", // termina cuando se suelta el pin: la línea ya está completa
           scrub: true,
         },
       });
@@ -81,7 +81,7 @@ export default function Section2() {
   );
 
   return (
-    <div ref={trackRef} className="relative h-[400vh] mt-10">
+    <div ref={trackRef} className="relative h-[300vh] pt-10 bg-black">
       <div
         ref={containerRef}
         className="w-full h-screen bg-neutral-900 overflow-hidden sticky top-0"

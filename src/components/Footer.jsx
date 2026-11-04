@@ -2,6 +2,7 @@ import { Button, Tooltip } from "@heroui/react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { SiGmail, SiWhatsapp } from "react-icons/si";
 import { useColor } from "../context/ColorContext";
+import LazyVideo from "./LazyVideo";
 
 const logo = "/img/newHome/section1/Logo-JuanDiaz-4.webp";
 
@@ -39,15 +40,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full h-screen relative overflow-hidden flex flex-col justify-end p-6 md:p-10">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="/video/juandiaz-1.mp4" type="video/mp4" />
-      </video>
+      <LazyVideo src="/video/juandiaz-1.mp4" className="absolute inset-0 w-full h-full object-cover z-0" />
 
       <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
 
@@ -100,7 +93,7 @@ export default function Footer() {
                   isIconOnly
                   variant="flat"
                   size="lg"
-                  className={`bg-white/10 text-white ${social.color} border border-white/10 backdrop-blur-sm transition-all duration-300 transform hover:-translate-y-1 cursor-pointer`}
+                  className={`bg-white/10 text-white ${social.color} border border-white/10 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer`}
                   onClick={() =>
                     window.open(social.url, "_blank", "noopener,noreferrer")
                   }

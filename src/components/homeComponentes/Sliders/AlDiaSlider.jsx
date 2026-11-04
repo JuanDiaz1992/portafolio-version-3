@@ -7,6 +7,7 @@ import { SiSpring } from "react-icons/si";
 import { useColor } from "../../../context/ColorContext";
 
 import SliderBase from "../../sliderEmbla/SliderBase";
+import LazyVideo from "../../LazyVideo";
 
 const slider1 = "/img/newHome/section1/sliders/slider1.webp";
 const slider2 = "/img/newHome/section1/sliders/slider2.webp";
@@ -139,19 +140,7 @@ export default function AlDiaSlider() {
               <div className="absolute inset-0 bg-neutral-950/10 z-10 pointer-events-none" />
 
               <div className="absolute inset-0 w-full h-full rounded-[34px] overflow-hidden scale-118 origin-center z-0">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover scale-100"
-                  controls={false}
-                  disablePictureInPicture
-                  webkit-playsinline="true"
-                >
-                  <source src={video2} type="video/mp4" />
-                </video>
+                <LazyVideo src={video2} className="w-full h-full object-cover scale-100" />
               </div>
             </div>
           </div>

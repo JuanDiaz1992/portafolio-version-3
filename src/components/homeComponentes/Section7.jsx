@@ -63,6 +63,7 @@ export default function Section7() {
 
   return (
     <section
+      id="proyectos-mas"
       ref={sectionRef}
       className="w-full mx-auto bg-white px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8 relative z-10"
     >

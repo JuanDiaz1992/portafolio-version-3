@@ -38,6 +38,81 @@
   transform: translateY(0);
 }
 
+/* ---------- Liquid Glass (nav) ----------
+   Capa funcional flotante. Base para todos los navegadores: desenfoque +
+   saturación + brillo en el borde. En Chromium se añade refracción real del
+   fondo con un filtro SVG (ver Navbar.jsx). */
+.liquid-glass {
+  background: rgba(18, 18, 20, 0.58);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6) brightness(0.78);
+  backdrop-filter: blur(18px) saturate(1.6) brightness(0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 18px rgba(255, 255, 255, 0.06),
+    0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.liquid-glass--refract {
+  backdrop-filter: url(#lg-refraccion) blur(2px) saturate(1.7) brightness(0.78);
+}
+/* Reflejo especular en el borde */
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.04) 62%,
+    rgba(255, 255, 255, 0.5)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+/* Lente del elemento activo */
+.lg-indicador {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0.12)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 0 12px rgba(255, 255, 255, 0.1),
+    0 2px 10px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    width 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 200ms ease-out;
+  pointer-events: none;
+}
+@media (prefers-reduced-transparency: reduce) {
+  .liquid-glass,
+  .liquid-glass--refract {
+    background: rgba(18, 18, 20, 0.94);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more) {
+  .liquid-glass {
+    background: rgba(0, 0, 0, 0.92);
+    border: 1px solid #fff;
+  }
+}
+
 /* Movimiento reducido: sin animaciones ni transiciones largas */
 @media (prefers-reduced-motion: reduce) {
   *,
