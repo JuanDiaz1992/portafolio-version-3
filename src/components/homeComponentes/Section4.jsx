@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -14,6 +14,15 @@ export default function Section4() {
   const targetRef = useRef(null);
   const lastIntensityRef = useRef(null);
   const { setIntensidadMarco } = useColor();
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = (e) => setIsDesktop(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -34,25 +43,20 @@ export default function Section4() {
 
   return (
     <section
+      id="proyectos"
       ref={targetRef}
       className="relative h-auto md:h-[400vh] bg-black text-white z-40 py-20 md:py-0"
     >
       <div className="relative md:sticky top-0 h-auto md:h-screen w-full flex flex-col md:flex-row items-center overflow-visible md:overflow-hidden">
         <motion.div
           style={{
-            x:
-              typeof window !== "undefined" && window.innerWidth >= 768
-                ? xTransform
-                : 0,
+            x: isDesktop ? xTransform : 0,
             z: 0,
           }}
           className="flex flex-col md:flex-row gap-12 px-6 md:px-16 w-full md:w-auto will-change-transform transform-gpu"
         >
           <div className="w-full md:w-[75vw] lg:w-[40vw] h-auto md:h-[75vh] flex flex-col justify-center shrink-0 mb-6 md:mb-0">
-            <span className="font-mono text-xs text-neutral-500 tracking-[0.2em] mb-3 uppercase">
-              // INDEX DE PROYECTOS
-            </span>
-            <h2 className="text-4xl md:text-8xl font-bold font-['Antonio',sans-serif] tracking-tight mb-4">
+            <h2 className="text-4xl md:text-8xl font-bold font-display tracking-tight mb-4">
               PROYECTOS
               <br />
               SELECCIONADOS
@@ -60,7 +64,7 @@ export default function Section4() {
             <p className="text-neutral-400 text-md  max-w-sm">
               Una muestra curada de aplicaciones web y plataformas móviles
               desarrolladas enfocadas en el rendimiento, arquitectura robusta y
-              UX cinemático.
+              una experiencia cuidada.
             </p>
           </div>
           {/* PROYECTO 3 */}

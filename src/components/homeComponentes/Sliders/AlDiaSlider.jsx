@@ -44,12 +44,6 @@ export default function AlDiaSlider() {
           />
 
           <div className="h-[40%] pt-8 md:pt-16 px-4 md:px-8 flex flex-col gap-2.5 items-start text-white z-12">
-            <h2
-              style={{ color: colorPrincipal || "#fff" }}
-              className="text-xs font-mono font-bold tracking-[0.2em] uppercase"
-            >
-              // ALDÍA
-            </h2>
             <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white font-['Antonio',sans-serif]">
               Asistente financiero
             </h3>
@@ -71,7 +65,7 @@ export default function AlDiaSlider() {
                       isIconOnly
                       variant="flat"
                       className="bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
-                      aria-label="Al Día Front"
+                      aria-label="Frontend"
                     >
                       <FaReact className="text-base" />
                     </Button>
@@ -94,7 +88,7 @@ export default function AlDiaSlider() {
                       isIconOnly
                       variant="flat"
                       className="bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white transition-colors"
-                      aria-label="Al Día Back"
+                      aria-label="Backend"
                     >
                       <SiSpring className="text-base" />
                     </Button>
@@ -110,7 +104,7 @@ export default function AlDiaSlider() {
 
           <div className="h-[60%] flex items-end justify-end z-10 relative">
             {/* Imagen convertida de motion.img a img estándar con selector de GSAP y GPU acceleration */}
-            <img
+            <img loading="lazy" decoding="async"
               className="slider1-mockup h-full lg:mr-3.75 max-w-full object-contain object-bottom md:max-h-full sm:h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.8)] will-change-transform"
               src={slider1}
               alt="Dashboard mockup"
@@ -122,7 +116,7 @@ export default function AlDiaSlider() {
 
         {/* SLIDE 2*/}
         <div className="flex-[0_0_100%] min-w-0 h-full relative flex overflow-hidden bg-[#121214] items-center justify-center p-4">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-full h-full object-cover rounded-2xl shadow-2xl border border-neutral-850"
             src={slider2}
             alt="Vista del producto"
@@ -162,12 +156,6 @@ export default function AlDiaSlider() {
             </div>
           </div>
           <div className="w-full md:w-[50%] flex flex-col justify-center items-start gap-4 z-10 order-1 md:order-2">
-            <span
-              style={{ color: colorPrincipal || "#fff" }}
-              className="text-xs font-mono font-bold tracking-[0.2em] uppercase"
-            >
-              // EXPERIENCIA MOBILE
-            </span>
             <h3 className="text-3xl md:text-4xl font-bold tracking-tight font-['Antonio',sans-serif] text-white max-w-md leading-none">
               FINANZAS EN EL BOLSILLO
             </h3>
@@ -179,17 +167,11 @@ export default function AlDiaSlider() {
 
             <div className="grid grid-cols-2 gap-4 mt-2 w-full max-w-sm border-t border-neutral-800/60 pt-4">
               <div>
-                <h4 className="text-xs font-mono text-neutral-500 uppercase">
-                  // UI NATIVA
-                </h4>
                 <p className="text-sm font-semibold text-neutral-200 mt-0.5">
                   60 FPS Fluidos
                 </p>
               </div>
               <div>
-                <h4 className="text-xs font-mono text-neutral-500 uppercase">
-                  // ACCESO
-                </h4>
                 <p className="text-sm font-semibold text-neutral-200 mt-0.5">
                   Offline First
                 </p>

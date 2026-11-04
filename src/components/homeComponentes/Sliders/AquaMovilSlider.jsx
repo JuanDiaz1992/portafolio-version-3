@@ -36,14 +36,14 @@ export default function AquaMovilSlider() {
 
         <picture className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
           <source srcSet={imgBaseMobile} media="(max-w: 734px)" />
-          <img
+          <img loading="lazy" decoding="async"
             src={imgBaseDesktop}
-            alt="AquaMovil Hub"
+            alt="Plataforma de gestión y captura"
             className="w-full h-full object-cover opacity-20 md:opacity-80 group-hover:scale-[1.02] transition-transform duration-700 hidden md:block"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={imgBaseMobile}
-            alt="AquaMovil Hub"
+            alt="Plataforma de gestión y captura"
             className="w-full h-full object-cover block md:hidden"
           />
         </picture>
@@ -51,12 +51,6 @@ export default function AquaMovilSlider() {
         <div className="absolute inset-0 max-w-full md:max-w-[70%] z-1 pointer-events-none" />
 
         <div className="relative z-10 flex flex-col gap-3 items-start max-w-87.5 lg:max-w-xl ">
-          <h2
-            style={{ color: colorPrincipal || "#00aaff" }}
-            className="text-xs font-mono font-bold tracking-[0.2em] uppercase px-4 py-1 bg-black/90 backdrop-blur-md"
-          >
-            // ECOSISTEMA INTEGRADO
-          </h2>
           <h3 className="text-3xl md:text-4xl font-bold tracking-tight font-['Antonio',sans-serif] text-black/80">
             Sistema de Gestión & Captura
           </h3>
@@ -123,24 +117,24 @@ export default function AquaMovilSlider() {
               // Implementado con éxito en
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/img/newHome/section2/logo_belen.webp"
-                alt="Belén"
+                alt="Logo de entidad cliente"
                 className="h-6 md:h-7 object-contain"
               />
-              <img
+              <img loading="lazy" decoding="async"
                 src="/img/newHome/section2/logo_celia.webp"
-                alt="La Celia"
+                alt="Logo de entidad cliente"
                 className="h-6 md:h-7 object-contain "
               />
-              <img
+              <img loading="lazy" decoding="async"
                 src="/img/newHome/section2/logo_quinchia.webp"
-                alt="Quinchía"
+                alt="Logo de entidad cliente"
                 className="h-6 md:h-7 object-contain "
               />
-              <img
+              <img loading="lazy" decoding="async"
                 src="/img/newHome/section2/logo-virginia.webp"
-                alt="La Virginia"
+                alt="Logo de entidad cliente"
                 className="h-6 md:h-7 object-contain "
               />
             </div>
@@ -151,14 +145,14 @@ export default function AquaMovilSlider() {
       {/* SLIDE 2 */}
       <div className="flex-[0_0_100%] min-w-0 h-full relative flex items-start p-6 md:p-12 bg-white/90 overflow-hidden text-white group">
         <picture className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-          <img
+          <img loading="lazy" decoding="async"
             src={imgUXDesktop}
-            alt="AquaMovil UX/UI"
+            alt="Interfaz de la aplicación móvil"
             className="w-full h-full object-contain md:object-bottom-right  origin-bottom-right opacity-40 md:opacity-100 transition-all hidden md:block"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={imgUXMobile}
-            alt="AquaMovil UX/UI"
+            alt="Interfaz de la aplicación móvil"
             className="w-full h-full object-contain block md:hidden object-bottom"
           />
         </picture>
@@ -174,7 +168,7 @@ export default function AquaMovilSlider() {
             unificando la lógica con el Dashboard administrativo.
           </p>
 
-          <img
+          <img loading="lazy" decoding="async"
             src={imgButton1}
             alt=""
             className="hidden lg:block absolute -right-30 bottom-10 w-28 pointer-events-none transition-transform duration-500 group-hover:translate-y-3"
@@ -186,20 +180,20 @@ export default function AquaMovilSlider() {
       <div className="flex-[0_0_100%] min-w-0 h-full relative flex pt-15 items-start justify-end p-6 md:p-12 bg-white/90 overflow-hidden text-white group">
         {/* Fondo adaptativo nativo */}
         <picture className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-          <img
+          <img loading="lazy" decoding="async"
             src={imgFeaturesDesktop}
-            alt="AquaMovil Features"
+            alt="Funciones de la aplicación"
             className="w-full h-full object-contain md:object-bottom-left  hidden md:block"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={imgFeaturesMobile}
-            alt="AquaMovil Features"
+            alt="Funciones de la aplicación"
             className="w-full h-full object-contain object-bottom-left md:scale-95 origin-bottom-left block md:hidden"
           />
         </picture>
 
         <div className="relative z-10  bg-black/80  border border-neutral-800 p-6 md:p-8 rounded-3xl max-w-125 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform hover:-translate-y-1 duration-300 backdrop-blur-xl">
-          <img
+          <img loading="lazy" decoding="async"
             src={imgIcon3}
             alt=""
             className="w-16 md:w-20 absolute -left-10 -top-10 pointer-events-none transition-transform duration-500 group-hover:-translate-y-2"
@@ -213,7 +207,7 @@ export default function AquaMovilSlider() {
             validaciones dinámicas de métricas en tiempo real antes de subir
             reportes automatizados al servidor central.
           </p>
-          <img
+          <img loading="lazy" decoding="async"
             src={imgButton2}
             alt=""
             className="hidden lg:block absolute -left-40 -bottom-5 w-36 pointer-events-none transition-transform duration-500 group-hover:translate-y-3"

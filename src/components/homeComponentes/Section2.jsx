@@ -24,8 +24,9 @@ export default function Section2() {
         },
       });
 
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       // --- 1. Movimiento X Texto Atrás: [0, 0.25, 0.5] -> ["-40%", "40%", "40%"] ---
-      tl.fromTo(
+      if (!reduce) tl.fromTo(
         ".texto-atras",
         { x: "-40%" },
         { x: "40%", duration: 0.25, ease: "none" },
@@ -33,7 +34,7 @@ export default function Section2() {
       );
 
       // --- 2. Movimiento X Texto Adelante: [0, 0.25, 0.5] -> ["30%", "-15%", "-15%"] ---
-      tl.fromTo(
+      if (!reduce) tl.fromTo(
         ".texto-adelante",
         { x: "30%" },
         { x: "-15%", duration: 0.25, ease: "none" },

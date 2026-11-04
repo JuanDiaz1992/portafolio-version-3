@@ -1,7 +1,6 @@
 import { Button, Tooltip } from "@heroui/react";
 import { FaReact } from "react-icons/fa";
 import { SiLaravel } from "react-icons/si";
-import { useColor } from "../../../context/ColorContext";
 import SliderBase from "../../sliderEmbla/SliderBase";
 
 const logo = "/img/newHome/section2/logo-catleya.svg";
@@ -11,7 +10,6 @@ const img4 = "/img/newHome/section2/img3-4.webp";
 
 export default function CatleyaSlider() {
   const emblaOptions = { loop: true, axis: "y" };
-  const { colorPrincipal } = useColor();
 
   return (
     <SliderBase options={emblaOptions}>
@@ -20,13 +18,6 @@ export default function CatleyaSlider() {
 
         <div className="relative z-10 p-6 md:p-10 flex flex-col lg:flex-row gap-8 items-center lg:items-start text-white h-full justify-center lg:justify-between w-full max-w-5xl mx-auto">
           <div className="flex flex-col gap-3 items-start max-w-xl">
-            <h2
-              style={{ color: colorPrincipal || "#fff" }}
-              className="text-xs font-mono font-bold tracking-[0.2em] uppercase px-4 py-1 bg-black/90 backdrop-blur-md border border-white/5"
-            >
-              // PLATAFORMA WEB HOTELERA
-            </h2>
-
             <h3 className="text-white/90 text-2xl md:text-3xl font-bold tracking-tight font-sans">
               Sistema de Alojamiento & Reservas
             </h3>
@@ -99,7 +90,7 @@ export default function CatleyaSlider() {
           </div>
 
           <div className="hidden lg:flex items-center justify-center h-full max-w-xs opacity-80 hover:opacity-100 transition-opacity">
-            <img
+            <img loading="lazy" decoding="async"
               src={logo}
               alt="Logo corporativo del proyecto"
               className="w-48 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
@@ -112,7 +103,7 @@ export default function CatleyaSlider() {
 
       <div className="flex-[0_0_100%] min-w-0 h-full relative overflow-hidden bg-[#121214] flex items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-[95%] md:max-w-[85%] rounded-xl md:rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-neutral-800/50 bg-neutral-900">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-full h-full object-cover select-none"
             src={img2}
             alt="Interfaz de usuario - Vista de reservas"
@@ -124,7 +115,7 @@ export default function CatleyaSlider() {
 
       <div className="flex-[0_0_100%] min-w-0 h-full relative overflow-hidden bg-[#121214] flex items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-[95%] md:max-w-[85%] rounded-xl md:rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-neutral-800/50 bg-neutral-900">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-full h-full object-cover select-none"
             src={img3}
             alt="Interfaz de usuario - Panel de habitaciones"
@@ -136,7 +127,7 @@ export default function CatleyaSlider() {
 
       <div className="flex-[0_0_100%] min-w-0 h-full relative overflow-hidden bg-[#121214] flex items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-[95%] md:max-w-[85%] rounded-xl md:rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-neutral-800/50 bg-neutral-900">
-          <img
+          <img loading="lazy" decoding="async"
             className="w-full h-full object-cover select-none"
             src={img4}
             alt="Interfaz de usuario - Flujo de pago"

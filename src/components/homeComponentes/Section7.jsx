@@ -4,7 +4,6 @@ import { FaWordpress } from "react-icons/fa";
 import { BiStore } from "react-icons/bi";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useColor } from "../../context/ColorContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +13,6 @@ const plants = "/img/newHome/section3/daniPlants.webp";
 const dbank = "/img/newHome/section3/dbank.webp";
 
 export default function Section7() {
-  const { colorPrincipal } = useColor();
   const sectionRef = useRef(null);
   const dbankContainerRef = useRef(null);
   const card2Ref = useRef(null);
@@ -74,12 +72,6 @@ export default function Section7() {
           className="w-full md:w-[60%] bg-[#0B1528] rounded-[20px] p-6 sm:p-8 overflow-hidden relative flex flex-col justify-between border border-white/10 shadow-xl group"
         >
           <div className="flex flex-col gap-2 z-20 max-w-sm">
-            <h4
-              style={{ color: colorPrincipal || "#38BDF8" }}
-              className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-white/5 border border-white/10 w-fit rounded-xs"
-            >
-              // BANCA DIGITAL MULTI-IDIOMA
-            </h4>
 
             <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
               Servicios Financieros & Banking
@@ -103,14 +95,14 @@ export default function Section7() {
                 }
                 size="sm"
                 className="font-semibold text-white shadow-lg bg-sky-600 hover:bg-sky-500 transition-colors cursor-pointer"
-                aria-label="Ver Proyecto DBank Online"
+                aria-label="Ver proyecto de banca digital"
               >
                 Ver Proyecto en Vivo ↗
               </Button>
 
               <Tooltip delay={0}>
                 <Tooltip.Trigger>
-                  <div role="button" tabIndex={0}>
+                  <div>
                     <Button
                       isIconOnly
                       variant="flat"
@@ -134,9 +126,9 @@ export default function Section7() {
 
           {/* Mockup / Imagen DBank posicionada adentro */}
           <div className="absolute right-[-5%] bottom-[-5%] pointer-events-none overflow-hidden z-10 w-[60%] sm:w-[90%] h-auto">
-            <img
+            <img loading="lazy" decoding="async"
               src={dbank}
-              alt="Plataforma DBank Online"
+              alt="Plataforma de banca digital"
               className="w-full h-auto object-contain object-bottom-right drop-shadow-2xl rounded-2xl"
             />
           </div>
@@ -149,12 +141,6 @@ export default function Section7() {
         >
           {/* Header Card (Texto y Botón) */}
           <div className="flex flex-col gap-2 z-20 w-full p-6 sm:p-8">
-            <h4
-              style={{ color: colorPrincipal || "#b45309" }}
-              className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-black/70 border border-black/10 w-fit rounded-xs text-black"
-            >
-              // MANGO BICHE MÍA
-            </h4>
 
             <h3 className="text-black text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
               Modelo de Franquicia
@@ -177,7 +163,7 @@ export default function Section7() {
                 }
                 size="sm"
                 className="font-semibold text-black shadow-md bg-amber-500 hover:bg-amber-400 transition-colors cursor-pointer"
-                aria-label="Ver Proyecto Mango Biche Mía"
+                aria-label="Ver proyecto de franquicia"
                 endContent={<BiStore size={16} />}
               >
                 Ver Proyecto en Vivo ↗
@@ -185,7 +171,7 @@ export default function Section7() {
 
               <Tooltip delay={0}>
                 <Tooltip.Trigger>
-                  <div role="button" tabIndex={0}>
+                  <div>
                     <Button
                       isIconOnly
                       variant="flat"
@@ -206,15 +192,15 @@ export default function Section7() {
           </div>
 
           <div className="w-full relative flex justify-center items-end mt-auto pointer-events-none select-none z-10">
-            <img
+            <img loading="lazy" decoding="async"
               src={woman}
-              alt="Modelo Mango Biche Mía"
+              alt="Modelo de la franquicia"
               className="w-75 sm:w-87.5 md:w-112.5 lg:w-120 object-contain relative z-10"
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
             />
 
-            <img
+            <img loading="lazy" decoding="async"
               ref={plantsRef}
               src={plants}
               alt="Plantas decorativas"

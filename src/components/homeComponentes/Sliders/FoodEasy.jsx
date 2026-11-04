@@ -21,30 +21,24 @@ export default function FoodEasySlider() {
         <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-screen z-1" />
 
         <picture className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-          <img
+          <img loading="lazy" decoding="async"
             src={imgDesktop}
-            alt="FoodEasy Background"
+            alt="Fondo del sitio de restaurante"
             className="w-full h-full object-cover opacity-60 md:opacity-100 hidden lg:block"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={imgTablet}
-            alt="FoodEasy Background"
+            alt="Fondo del sitio de restaurante"
             className="w-full h-full object-cover hidden md:block lg:hidden"
           />
-          <img
+          <img loading="lazy" decoding="async"
             src={imgMobile}
-            alt="FoodEasy Background"
+            alt="Fondo del sitio de restaurante"
             className="w-full h-full object-cover  block md:hidden"
           />
         </picture>
 
         <div className="relative z-10 p-6 md:p-10 flex flex-col gap-2.5 items-start text-white h-full justify-start max-w-xl">
-          <h2
-            style={{ color: colorPrincipal || "#fff" }}
-            className="text-xs font-mono font-bold tracking-[0.2em] uppercase px-4 py-1 bg-black/90 backdrop-blur-md"
-          >
-            // FOODEASY
-          </h2>
           <h3 className="text-black/90 text-2xl md:text-3xl font-bold tracking-tight  font-['Antonio',sans-serif]">
             Restaurante
           </h3>
@@ -102,9 +96,9 @@ export default function FoodEasySlider() {
               // Implementado con éxito en
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/img/newHome/section2/Casandra.webp"
-                alt="Casandra"
+                alt="Logo de cliente"
                 className="h-6 md:h-9 object-contain"
               />
             </div>
@@ -114,10 +108,10 @@ export default function FoodEasySlider() {
 
       {/* SLIDE 2 */}
       <div className="flex-[0_0_100%] min-w-0 h-full relative flex bg-[#121214] items-center justify-center overflow-hidden">
-        <img
+        <img loading="lazy" decoding="async"
           className="w-full h-full object-cover"
           src={imgSlide2}
-          alt="FoodEasy Vista del menú"
+          alt="Vista del menú del restaurante"
           draggable={false}
         />
       </div>

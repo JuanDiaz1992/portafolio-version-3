@@ -9,18 +9,18 @@ export default function CardEfect() {
   const { colorPrincipal } = useColor();
 
   const [isHovered, setIsHovered] = useState(false);
-  const [lightPosition, setLightPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (event) => {
     if (cardRef.current) {
       const rect = cardRef.current.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      setLightPosition({ x, y });
+      cardRef.current.style.setProperty("--lx", `${x}px`);
+      cardRef.current.style.setProperty("--ly", `${y}px`);
     }
   };
 
-  const lightGradient = `radial-gradient(${BORDER_LIGHT_RADIUS}px at ${lightPosition.x}px ${lightPosition.y}px, ${colorPrincipal || "rgba(255,255,255,0.25)"} 0%, transparent 100%)`;
+  const lightGradient = `radial-gradient(${BORDER_LIGHT_RADIUS}px at var(--lx, 0px) var(--ly, 0px), ${colorPrincipal || "rgba(255,255,255,0.25)"} 0%, transparent 100%)`;
 
   return (
     <div
@@ -90,7 +90,7 @@ export default function CardEfect() {
           <div className="flex-1 flex flex-col justify-center mt-2 sm:mt-4">
             <h3 className="text-[18px] sm:text-[20px] lg:text-[20px] tracking-tighter text-white leading-[1.1]">
               ¡Hola! Soy Juan,{" "}
-              <span style={{ color: colorPrincipal }}>tu ingeniero</span> de
+              <span style={{ color: colorPrincipal }}>tu desarrollador</span> de
               software
             </h3>
 

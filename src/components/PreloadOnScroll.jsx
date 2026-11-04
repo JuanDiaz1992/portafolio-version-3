@@ -9,6 +9,13 @@ export function PreloadOnScroll({
   const [shouldLoad, setShouldLoad] = useState(false);
   const containerRef = useRef(null);
 
+  // Permite forzar la carga (p. ej. al pulsar "Ver proyectos" en el hero)
+  useEffect(() => {
+    const forzar = () => setShouldLoad(true);
+    window.addEventListener("cargar-secciones", forzar);
+    return () => window.removeEventListener("cargar-secciones", forzar);
+  }, []);
+
   useEffect(() => {
     // Si ya se decidió cargar, no necesitamos seguir observando
     if (shouldLoad) return;

@@ -9,8 +9,6 @@ import { useColor } from "../../context/ColorContext";
 import gsap from "gsap";
 
 const cvJuanDiaz = "/Documentos/Juan Camilo Diaz Valencia HV.pdf";
-const invisualSign = "/img/newHome/section2/invisualSign.webp";
-const invisualSignM = "/img/newHome/section2/invisualSign-m.webp";
 const tech = "/img/newHome/wordpressSection/tech-camp-explorers.webp";
 
 export default function Section5() {
@@ -115,12 +113,12 @@ export default function Section5() {
       >
         <div className="flex flex-col lg:flex-row gap-6 w-full h-auto lg:h-[40%]">
           <div className="rounded-[20px] relative overflow-hidden border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] h-auto min-h-160 md:h-125 lg:h-225 w-full lg:w-[50%]">
-            <img
+            <img loading="lazy" decoding="async"
               src="/img/newHome/section2/banner3.webp"
               alt="Banner Juan Diaz"
               className="absolute inset-0 h-full w-full object-cover object-center block max-md:hidden"
             />
-            <img
+            <img loading="lazy" decoding="async"
               src="/img/newHome/section2/banner3-m.webp"
               alt="Banner Juan Diaz"
               className="absolute inset-0 h-full w-full object-cover object-center hidden max-md:block"
@@ -133,7 +131,8 @@ export default function Section5() {
                   <h3 className="font-sans text-[20px] md:text-[26px] font-bold leading-none text-white">
                     SOY JUAN
                   </h3>
-                  <h4 className="animate-[moveGradient_5s_infinite_alternate] bg-[linear-gradient(141deg,#fff_59%,#00aaff_100%)] bg-size-[200%_100%] bg-clip-text font-sans text-[38px] md:text-[50px] font-bold text-transparent [-webkit-background-clip:text]">
+                  <h4 style={{ color: colorPrincipal }}
+                    className="font-display uppercase text-[44px] md:text-[60px] font-bold leading-none">
                     DIAZ.
                   </h4>
                 </div>
@@ -141,7 +140,7 @@ export default function Section5() {
                   Soy un desarrollador apasionado por crear soluciones
                   innovadoras y eficientes, me encanta transformar ideas en
                   proyectos funcionales que no solo resuelvan problemas reales,
-                  sinó que también ofrezcan experiencias únicas y memorables. Mi
+                  sino que también ofrezcan experiencias únicas y memorables. Mi
                   enfoque se basa en combinar la lógica del código con la
                   creatividad, para lograr productos que destacan tanto por su
                   rendimiento como por su estética.
@@ -189,142 +188,23 @@ export default function Section5() {
                 />
               </div>
 
-              {/* HUD UI overlay */}
-              <div className="absolute inset-0 p-3 sm:p-5 flex flex-col justify-between font-mono text-[10px] text-white/30 pointer-events-none select-none z-10">
-                {/* Top HUD bar */}
-                <div className="flex justify-between items-start w-full relative z-20">
-                  <div className="flex flex-col gap-1 backdrop-blur-[2px] bg-black/20 p-1.5 sm:p-2 rounded border border-white/5 relative">
-                    <span className="absolute top-0 left-0 text-white/60 text-[8px] font-light">
-                      ┌
-                    </span>
-                    <span className="absolute top-0 right-0 text-white/60 text-[8px] font-light">
-                      ┐
-                    </span>
-                    <span className="absolute bottom-0 left-0 text-white/60 text-[8px] font-light">
-                      └
-                    </span>
-                    <span className="absolute bottom-0 right-0 text-white/60 text-[8px] font-light">
-                      ┘
-                    </span>
-
-                    <div
-                      className="font-bold flex items-center gap-1.5 text-[10px] sm:text-[11px]"
-                      style={{ color: "var(--hud-glow-color)" }}
-                    >
-                      <span
-                        className="w-2 h-2 rounded-full animate-ping absolute unique-ping"
-                        style={{ backgroundColor: "var(--hud-glow-color)" }}
-                      />
-                      <span
-                        className="w-2 h-2 rounded-full"
-                        style={{ backgroundColor: "var(--hud-glow-color)" }}
-                      />
-                      CORE_STATUS: ONLINE
-                    </div>
-                    <div className="text-white/50 text-[9px] sm:text-[10px]">
-                      SYS_INTEGRITY:{" "}
-                      <span className="text-white font-bold">100%</span>
-                    </div>
-                    <div className="text-[8px] sm:text-[9px] text-white/20 tracking-wider">
-                      INIT_SEQ_OK // TRK_A_ACTIVE
-                    </div>
-                  </div>
-
-                  {/* Modelo / Loc (Oculto en móviles para dejar espacio al drom, visible de sm en adelante) */}
-                  <div className="text-right p-2 hidden sm:block opacity-70 backdrop-blur-[2px] bg-black/20 rounded border border-white/5 relative">
-                    <span className="absolute top-0 left-0 text-white/60 text-[8px] font-light">
-                      ┌
-                    </span>
-                    <span className="absolute top-0 right-0 text-white/60 text-[8px] font-light">
-                      ┐
-                    </span>
-                    <span className="absolute bottom-0 left-0 text-white/60 text-[8px] font-light">
-                      └
-                    </span>
-                    <span className="absolute bottom-0 right-0 text-white/60 text-[8px] font-light">
-                      ┘
-                    </span>
-
-                    <div
-                      className="font-bold text-[11px]"
-                      style={{ color: "var(--hud-glow-color)" }}
-                    >
-                      DRN_MODEL // V3.26
-                    </div>
-                    <div>
-                      LOC_X: <span className="text-white/60">0.00</span> //
-                      LOC_Y: <span className="text-white/60">0.00</span>
-                    </div>
-                    <div className="text-[9px] text-white/20">
-                      GRID_REF: NX-4092 // ALT: 0.0m
-                    </div>
-                  </div>
-                </div>
-
-                {/* Indicadores laterales HUD */}
-                <div className="absolute top-1/2 left-2 sm:left-3 -translate-y-1/2 flex flex-col gap-2 opacity-25">
-                  <div
-                    className="font-bold text-[8px]"
-                    style={{ color: "var(--hud-glow-color)" }}
-                  >
-                    TARGET_LOCK
-                  </div>
-                  <div className="flex flex-col text-[7px] sm:text-[8px] leading-tight">
-                    <span>[ + ] RANGE: NOMINAL</span>
-                    <span>[ █ ] WEAPON: SAFE</span>
-                    <span className="text-white/40 mt-0.5 sm:mt-1">
-                      PWR_OUTPUT ||||||||... 82%
-                    </span>
-                  </div>
-                </div>
-
-                <div className="absolute top-1/2 right-3 -translate-y-1/2 flex-col gap-2 opacity-25 text-right hidden sm:flex">
-                  <div
-                    className="font-bold text-[8px]"
-                    style={{ color: "var(--hud-glow-color)" }}
-                  >
-                    telemetry_feed
-                  </div>
-                  <div className="flex flex-col text-[8px] leading-tight">
-                    <span>PITCH: 0.00°</span>
-                    <span>YAW: 0.00°</span>
-                    <span>ROLL: 0.00°</span>
-                    <span className="text-white/40 mt-1">
-                      SIGNAL_STB |||||||||| 100%
-                    </span>
-                  </div>
-                </div>
-
-                {/* Progress Bar Container */}
-                <div className="w-full flex flex-col gap-1 sm:gap-1.5 backdrop-blur-[2px] bg-black/20 p-2 sm:p-2.5 rounded border border-white/5 relative z-20">
-                  <span className="absolute top-0 left-2 text-[7px] sm:text-[8px] text-white/10 hidden sm:inline">
-                    ▲ HANGAR_SYSTEMS_ACTIVE
+              {/* Indicador de scroll */}
+              <div
+                className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end pointer-events-none select-none z-10"
+                aria-hidden="true"
+              >
+                <div className="w-full flex flex-col gap-2 relative z-20">
+                  <span className="text-xs sm:text-sm font-medium tracking-wide text-white/80">
+                    Desliza para despegar
                   </span>
-
-                  <div className="flex justify-between items-center text-[8px] sm:text-[9px] tracking-widest sm:mt-1">
-                    <span className="text-white/40 truncate mr-2">
-                      LAUNCH_PROGRESS
-                    </span>
-                    <span
-                      className="animate-pulse text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2 py-0.5 rounded border whitespace-nowrap"
-                      style={{
-                        color: "var(--hud-glow-color)",
-                        borderColor: "rgba(var(--hud-glow-color), 0.2)",
-                        backgroundColor: "rgba(var(--hud-glow-color), 0.05)",
-                      }}
-                    >
-                      SCROLL TO LAUNCH
-                    </span>
-                  </div>
-
-                  <div className="w-full h-1.5 bg-white/5 rounded-sm overflow-hidden border border-white/10 relative">
+                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                     <div
                       ref={progresoBarraRef}
-                      className="h-full origin-left"
+                      className="h-full origin-left rounded-full"
                       style={{
                         transform: "scaleX(0)",
                         willChange: "transform",
-                        background: `linear-gradient(90deg, var(--hud-glow-color) 0%, #ffffff 100%)`,
+                        backgroundColor: "var(--hud-glow-color)",
                       }}
                     />
                   </div>
@@ -378,12 +258,6 @@ export default function Section5() {
           <div className="pointer-events-none relative z-20 flex h-full w-full items-center p-6 md:p-10">
             <div className="pointer-events-auto flex flex-col justify-between max-w-xl rounded-2xl border border-white/10 bg-black/60 p-6 md:p-8 backdrop-blur-md shadow-2xl">
               <div className="flex flex-col gap-3 items-start">
-                <h4
-                  style={{ color: colorPrincipal || "#fff" }}
-                  className="text-xs font-mono font-bold tracking-[0.2em] uppercase px-3 py-1 bg-black/80 rounded border border-white/10"
-                >
-                  // PLATAFORMA BRANDING & VEHICLE WRAP
-                </h4>
 
                 <h3 className="text-white text-2xl md:text-3xl font-bold tracking-tight font-sans mt-1">
                   Servicios de Branding Vehicular
@@ -417,7 +291,7 @@ export default function Section5() {
 
                 <Tooltip delay={0}>
                   <Tooltip.Trigger>
-                    <div role="button" tabIndex={0}>
+                    <div>
                       <Button
                         isIconOnly
                         variant="flat"
@@ -445,25 +319,8 @@ export default function Section5() {
             className="w-full md:w-[40%] h-72 sm:h-80 md:h-full bg-black/30 rounded-[20px] relative overflow-visible border border-white/5"
             style={{ "--hud-glow-color": colorPrincipal || "#00aaff" }}
           >
-            {/* INTERFAZ DE ACOPLAMIENTO 3D (Docking Pad) */}
-            <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-between font-mono text-[10px] text-white/30 pointer-events-none select-none z-10">
-              {/* Texto de Confirmación Superior */}
-              <div className="flex flex-col gap-0.5 relative z-20">
-                <div
-                  className="font-bold flex items-center gap-1.5 text-[10px] sm:text-[11px]"
-                  style={{ color: "var(--hud-glow-color)" }}
-                >
-                  <span
-                    className="w-2 h-2 rounded-full animate-pulse"
-                    style={{ backgroundColor: "var(--hud-glow-color)" }}
-                  />
-                  DOCKING_STATUS: ENGAGED
-                </div>
-                <div className="text-white/40 text-[8px] sm:text-[9px]">
-                  HANGAR_74 // SECURE_LOCK_ON
-                </div>
-              </div>
-
+            {/* Pista de aterrizaje del dron (decorativa) */}
+            <div className="absolute inset-0 pointer-events-none select-none z-10" aria-hidden="true">
               {/* ANILLOS HOLOGRÁFICOS EN PERSPECTIVA (Base del Dron) */}
               <div
                 className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-56 sm:w-72 h-32 sm:h-40 flex items-center justify-center z-0"
@@ -504,20 +361,6 @@ export default function Section5() {
                   <div className="absolute left-1/2 top-0 w-px h-full bg-white/10" />
                 </div>
               </div>
-
-              {/* Datos Técnicos del Manifiesto Inferior */}
-              <div className="w-full flex flex-col gap-1 backdrop-blur-[1px] bg-black/10 p-2 rounded border border-white/5 relative z-20">
-                <div className="flex justify-between text-[9px] sm:text-[10px]">
-                  <span>CARGO_MANIFEST:</span>
-                  <span className="text-white font-bold">[ENCRYPTED_DATA]</span>
-                </div>
-                <div className="flex justify-between border-t border-white/5 pt-1 text-[8px] sm:text-[9px]">
-                  <span>SYS_SYNCHRONIZATION:</span>
-                  <span className="text-emerald-400 font-bold">
-                    COMPLETE 100%
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* El dron llegará flotando matemáticamente aquí gracias a GSAP */}
@@ -538,9 +381,9 @@ export default function Section5() {
             {/* Vista previa de imagen del proyecto */}
             <div className="w-full flex justify-center items-center p-4 pt-6 md:pt-8 z-10 select-none pointer-events-none">
               <div className="w-full sm:w-[90%] md:w-[75%] max-w-100 overflow-hidden drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-                <img
+                <img loading="lazy" decoding="async"
                   src={tech}
-                  alt="Vista previa del proyecto Tech Camp Explorers en portafolio de Juan Díaz"
+                  alt="Vista previa de un sitio web para una academia de tecnología"
                   className="w-full h-auto object-contain scale-100 sm:scale-105 group-hover:scale-100 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                   draggable={false}
                 />
@@ -550,20 +393,14 @@ export default function Section5() {
             {/* Información del Proyecto */}
             <div className="relative z-10 p-5 sm:p-6 md:p-8 flex flex-col gap-4 items-start w-full md:mt-auto border-t border-white/5 bg-neutral-950/40 backdrop-blur-sm">
               <div className="flex flex-col gap-1.5 items-start w-full">
-                <h4
-                  style={{ color: colorPrincipal || "#fff" }}
-                  className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-black/90 border border-white/5"
-                >
-                  // TECH CAMP EXPLORERS
-                </h4>
 
                 <h3 className="text-white/90 text-lg sm:text-xl md:text-2xl font-bold tracking-tight font-sans">
                   Campamentos de tecnología
                 </h3>
 
                 <p className="text-white/60 text-xs md:text-sm leading-relaxed max-w-162.5 mt-1">
-                  Desarrollé la plataforma digital para Tech Camp Explorers, una
-                  academia tecnológica de verano. El reto principal fue
+                  Desarrollé la plataforma digital para una academia
+                  tecnológica de verano. El reto principal fue
                   estructurar una oferta educativa diversa (robótica VEX,
                   Minecraft, Java) y segmentarla de manera intuitiva según
                   edades y niveles de habilidad. Implementé una navegación
@@ -591,7 +428,7 @@ export default function Section5() {
 
                 <Tooltip delay={0}>
                   <Tooltip.Trigger>
-                    <div role="button" tabIndex={0}>
+                    <div>
                       <Button
                         isIconOnly
                         variant="flat"
@@ -618,10 +455,6 @@ export default function Section5() {
 
 const style = document.createElement("style");
 style.innerHTML = `
-  @keyframes moveGradient {
-    0% { background-position: 10% 50%; }
-    100% { background-position: 100% 50%; }
-  }
     @keyframes growProgressBar {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }

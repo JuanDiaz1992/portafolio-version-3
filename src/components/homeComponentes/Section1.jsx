@@ -20,15 +20,13 @@ import {
   SiFramer,
 } from "react-icons/si";
 import { BiLogoBlender } from "react-icons/bi";
-import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import Viewer3d from "./threeJs/viewers/Viewer3dAbstract";
 import { useColor } from "../../context/ColorContext";
 import CardEfect from "../CardEfect";
-
-useGLTF.preload("/3d/Robot-final.glb");
+import { irA } from "../../utils/irA";
 
 const logo = "/img/newHome/section1/Logo-JuanDiaz-4.webp";
 const logoFondo = "/img/newHome/section1/LogofondoClaro.webp";
@@ -55,20 +53,22 @@ export default function Section1() {
 
   useGSAP(
     () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) return;
       const tl = gsap.timeline();
 
       tl.from(".section-container", {
         x: -100,
         opacity: 0,
-        duration: 0.7,
-        ease: "power2.out",
+        duration: 0.5,
+        ease: "power3.out",
       })
       .from(
         ".logo-card",
         {
           opacity: 0,
-          duration: 1,
-          ease: "none",
+          duration: 0.6,
+          ease: "power3.out",
         },
         "-=0.2"
       )
@@ -78,7 +78,7 @@ export default function Section1() {
           y: -30,
           opacity: 0,
           duration: 0.4,
-          ease: "none",
+          ease: "power3.out",
         },
         "-=0.5"
       )
@@ -96,7 +96,7 @@ export default function Section1() {
     { scope: containerRef }
   );
 
-  const cardBaseStyle = "rounded-[20px] t";
+  const cardBaseStyle = "rounded-[20px]";
 
   return (
     <section
@@ -113,12 +113,13 @@ export default function Section1() {
             src={logo}
             width="362"
             height="134"
-            alt="logo"
+            alt="Juan Díaz, desarrollador de software"
           />
           <img
             className="logo-bg absolute bottom-0 left-0 max-w-37.5 lg:max-w-full"
             src={logoFondo}
-            alt="logoFondo"
+            alt=""
+            aria-hidden="true"
           />
         </div>
 
@@ -152,7 +153,13 @@ export default function Section1() {
                 key={i}
                 className="[&_svg]:text-zinc-500 [&_svg]:dark:text-zinc-400 [&_svg]:text-[32px] lg:[&_svg]:text-[36px] [&_svg]:transition-colors [&_svg]:duration-200 [&_svg]:hover:text-[#00e1ff]"
               >
-                <a href={link.href} target="_blank" aria-label={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  className="inline-flex items-center justify-center w-11 h-11 rounded-full"
+                >
                   {link.icon}
                 </a>
               </div>
@@ -165,7 +172,7 @@ export default function Section1() {
         <div className="flex flex-col md:flex-row gap-6 h-120 md:h-auto md:min-h-75 lg:h-[38%] w-full relative">
           <div className="absolute bottom-5 left-5 right-5 md:right-auto z-10 max-w-full md:max-w-sm text-white">
             <div className="p-6 bg-black/40 md:bg-white/10 backdrop-blur-md rounded-xl">
-              <h1 className="text-xl lg:text-2xl font-bold tracking-tight">
+              <h1 className="font-display uppercase text-2xl lg:text-3xl font-bold tracking-tight">
                 Desarrollador de software
               </h1>
               <p className="mt-2 text-xs lg:text-sm font-medium leading-relaxed">
@@ -174,6 +181,28 @@ export default function Section1() {
                 técnica hasta el diseño de la interfaz, asegurando que cada
                 producto sea tan funcional como intuitivo.
               </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a
+                  href="#proyectos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    irA("proyectos");
+                  }}
+                  className="inline-flex items-center min-h-11 px-5 rounded-full bg-white text-black text-sm font-semibold transition-transform duration-150 ease-out active:scale-[0.97]"
+                >
+                  Ver proyectos
+                </a>
+                <a
+                  href="#contacto"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    irA("contacto");
+                  }}
+                  className="inline-flex items-center min-h-11 px-5 rounded-full border border-white/40 text-white text-sm font-semibold transition-transform duration-150 ease-out active:scale-[0.97]"
+                >
+                  Hablemos
+                </a>
+              </div>
             </div>
           </div>
           <Viewer3d colorPrincipal={colorPrincipal} />
@@ -203,7 +232,7 @@ export default function Section1() {
                       <Tooltip.Trigger>
                         <div
                           className="text-white hover:text-[#00e1ff] flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md text-3xl lg:text-4xl p-2 rounded-xl bg-white/5 border border-white/5 hover:border-[#00e1ff]/30 w-14 h-14"
-                          role="button"
+                          role="img"
                           tabIndex={0}
                           aria-label={skill[1]}
                         >

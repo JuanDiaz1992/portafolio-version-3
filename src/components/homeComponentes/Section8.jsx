@@ -10,18 +10,18 @@ export default function Section8() {
 
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [lightPosition, setLightPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (event) => {
     if (cardRef.current) {
       const rect = cardRef.current.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      setLightPosition({ x, y });
+      cardRef.current.style.setProperty("--lx", `${x}px`);
+      cardRef.current.style.setProperty("--ly", `${y}px`);
     }
   };
 
-  const lightGradient = `radial-gradient(${BORDER_LIGHT_RADIUS}px at ${lightPosition.x}px ${lightPosition.y}px, ${colorPrincipal || "rgba(255,255,255,0.25)"} 0%, transparent 100%)`;
+  const lightGradient = `radial-gradient(${BORDER_LIGHT_RADIUS}px at var(--lx, 0px) var(--ly, 0px), ${colorPrincipal || "rgba(255,255,255,0.25)"} 0%, transparent 100%)`;
 
   const handleCopyEmail = (e) => {
     e.stopPropagation();
@@ -31,7 +31,7 @@ export default function Section8() {
   };
 
   return (
-    <section className="w-full bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <section id="contacto" className="w-full bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div
         ref={cardRef}
         onMouseEnter={() => setIsHovered(true)}
@@ -63,7 +63,7 @@ export default function Section8() {
         />
 
         <div className="flex flex-col gap-6 max-w-5xl mt-4 md:mt-8 p-8 md:p-14 z-20 relative">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[1.05]">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display uppercase font-bold text-white tracking-tight leading-[1.0]">
             Construyamos algo bien hecho
             <span style={{ color: colorPrincipal || "#38BDF8" }}>.</span>
           </h2>
@@ -86,7 +86,7 @@ export default function Section8() {
           </div>
 
           <div
-            className="absolute inset-0 translate-y-full transition-transform duration-500 ease-in-out group-hover:translate-y-0 z-20 flex items-center justify-between px-6 sm:px-10 md:px-14"
+            className="absolute inset-0 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0 group-focus-visible:translate-y-0 z-20 flex items-center justify-between px-6 sm:px-10 md:px-14"
             style={{ backgroundColor: colorPrincipal || "#38BDF8" }}
           >
             <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold tracking-tight text-neutral-950 truncate max-w-[70%]">

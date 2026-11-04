@@ -3,8 +3,13 @@ import Home from "./pages/Home";
 import MarcoCinematico from "./components/MarcoCinematico";
 import { useEffect } from "react";
 import { Lenis } from "lenis/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ColorPicker from "./components/ColorPicker";
 
 function App() {
+  const reducirMovimiento =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lenisOptions = {
     lerp: 0.1,
     duration: 1.2,
@@ -24,15 +29,13 @@ function App() {
     let resizeTimer;
 
     const handleResize = () => {
-      // Evita recargar si el resize fue solo vertical (común en navegadores móviles al ocultar la barra de direcciones)
+      // Ignora el resize solo vertical (barra de direcciones en móviles)
       if (window.innerWidth !== initialWidth) {
+        initialWidth = window.innerWidth;
         clearTimeout(resizeTimer);
 
-        // Espera 300ms después de que el usuario deje de cambiar el tamaño de la pantalla
-        resizeTimer = setTimeout(() => {
-          window.scrollTo(0, 0); // Vuelve arriba
-          window.location.reload(); // Recarga la página
-        }, 300);
+        // Recalcula los ScrollTrigger sin recargar ni perder la posición
+        resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 300);
       }
     };
 
@@ -44,13 +47,21 @@ function App() {
       clearTimeout(resizeTimer);
     };
   }, []);
-  return (
+  const contenido = (
     <>
-      <Lenis root options={lenisOptions}>
-        <Home />
-        <MarcoCinematico />
-      </Lenis>
+      <Home />
+      <MarcoCinematico />
+      <ColorPicker />
     </>
+  );
+
+  // Con movimiento reducido se usa el scroll nativo, sin suavizado de Lenis
+  return reducirMovimiento ? (
+    contenido
+  ) : (
+    <Lenis root options={lenisOptions}>
+      {contenido}
+    </Lenis>
   );
 }
 

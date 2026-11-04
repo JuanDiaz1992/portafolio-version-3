@@ -8,7 +8,14 @@ import ColorProvider from "./context/ColorProvider.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ColorProvider>
-      <main className="bg-background text-foreground min-h-screen">
+      <a href="#contenido" className="skip-link">
+        Saltar al contenido
+      </a>
+      <main
+        id="contenido"
+        tabIndex={-1}
+        className="bg-background text-foreground min-h-screen outline-none"
+      >
         <App />
       </main>
     </ColorProvider>

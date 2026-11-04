@@ -3,7 +3,6 @@ import { Button, Tooltip } from "@heroui/react";
 import { FaWordpress } from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useColor } from "../../context/ColorContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +18,6 @@ const kb3 = "/img/newHome/wordpressSection/suzanne_howes_k_b_fine_art_5.webp";
 const kb4 = "/img/newHome/wordpressSection/suzanne_howes_k_b_fine_art_1.webp";
 
 export default function Section6() {
-  const { colorPrincipal } = useColor();
   const kbContainerRef = useRef(null);
   const kb1Ref = useRef(null);
   const kb2Ref = useRef(null);
@@ -43,7 +41,7 @@ export default function Section6() {
         tl.fromTo(
           kb1Ref.current,
           { x: 35, rotate: -18, scale: 0.95 },
-          { x: 0, rotate: -25, scale: 1, duration: 0.8, ease: "back.out(1.2)" },
+          { x: 0, rotate: -25, scale: 1, duration: 0.8, ease: "power3.out" },
           0,
         )
           .fromTo(
@@ -54,7 +52,7 @@ export default function Section6() {
               rotate: 15,
               scale: 1,
               duration: 0.8,
-              ease: "back.out(1.2)",
+              ease: "power3.out",
             },
             0.08,
           )
@@ -66,7 +64,7 @@ export default function Section6() {
               rotate: 20,
               scale: 1,
               duration: 0.8,
-              ease: "back.out(1.2)",
+              ease: "power3.out",
             },
             0.16,
           )
@@ -78,7 +76,7 @@ export default function Section6() {
               rotate: -8,
               scale: 1,
               duration: 0.8,
-              ease: "back.out(1.2)",
+              ease: "power3.out",
             },
             0.24,
           );
@@ -114,7 +112,7 @@ export default function Section6() {
         <div className="flex-1 flex flex-col gap-8">
           {/* KPK */}
           <div className="w-full bg-[#0E2E52] rounded-[20px] p-6 sm:p-9 border border-white/10 shadow-lg flex flex-col lg:flex-row justify-between items-center lg:items-end gap-6 relative overflow-hidden">
-            <img
+            <img loading="lazy" decoding="async"
               src={newProjectBg}
               alt=""
               aria-hidden="true"
@@ -122,12 +120,6 @@ export default function Section6() {
             />
 
             <div className="flex flex-col gap-3 w-full lg:max-w-[55%] z-10">
-              <h4
-                style={{ color: colorPrincipal || "#fff" }}
-                className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-white/10 border border-white/10 w-fit rounded-xs"
-              >
-                // Climatización y Soluciones de Aislamiento
-              </h4>
 
               <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
                 Plataforma Web Corporativa
@@ -160,7 +152,7 @@ export default function Section6() {
 
                 <Tooltip delay={0}>
                   <Tooltip.Trigger>
-                    <div role="button" tabIndex={0}>
+                    <div>
                       <Button
                         isIconOnly
                         variant="flat"
@@ -181,9 +173,9 @@ export default function Section6() {
             </div>
 
             <div className="w-full lg:w-[42%] flex justify-center lg:justify-end z-10">
-              <img
+              <img loading="lazy" decoding="async"
                 src={newProjectImg}
-                alt="Tech Camp Explorers"
+                alt="Vista previa de un sitio web para campamentos de tecnología"
                 width="1200"
                 height="1800"
                 className="w-full h-auto max-h-75 object-contain rounded-lg drop-shadow-xl"
@@ -198,12 +190,6 @@ export default function Section6() {
               className="w-full md:w-[60%] bg-[#EBB481] rounded-[20px] p-6 sm:p-8 overflow-hidden relative flex flex-col justify-between border border-white/20 shadow-lg min-h-95"
             >
               <div className="flex flex-col gap-2 z-20 max-w-xs">
-                <h4
-                  style={{ color: colorPrincipal || "#fff" }}
-                  className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-[#423b34] border border-white/5 w-fit rounded-xs"
-                >
-                  // KB FINE ART
-                </h4>
                 <h3 className="text-black text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
                   Galería de Arte
                 </h3>
@@ -229,7 +215,7 @@ export default function Section6() {
                   </Button>
                   <Tooltip delay={0}>
                     <Tooltip.Trigger>
-                      <div role="button" tabIndex={0}>
+                      <div>
                         <Button
                           isIconOnly
                           variant="flat"
@@ -253,34 +239,34 @@ export default function Section6() {
 
               {/* Mockups de KB Fine Art  */}
               <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-                <img
+                <img loading="lazy" decoding="async"
                   src={kbFineArt}
-                  alt="kbFineArt"
+                  alt="Galería de arte en línea"
                   className="absolute right-[-5%] bottom-[-5%] z-10 w-[55%] h-auto max-w-none object-contain object-bottom-right"
                 />
 
-                <img
+                <img loading="lazy" decoding="async"
                   ref={kb1Ref}
                   src={kb1}
                   alt="Obra 1"
                   className="absolute z-20 top-[15%] left-[35%] w-37.5 h-auto rounded-lg shadow-2xl border border-white/20 origin-center"
                 />
 
-                <img
+                <img loading="lazy" decoding="async"
                   ref={kb3Ref}
                   src={kb3}
                   alt="Obra 3"
                   className="absolute z-10 top-[25%] right-[18%] w-47.5 h-auto rounded-lg shadow-2xl border border-white/20 origin-center"
                 />
 
-                <img
+                <img loading="lazy" decoding="async"
                   ref={kb2Ref}
                   src={kb2}
                   alt="Obra 2"
                   className="absolute z-30 bottom-[15%] left-[20%] w-47.5 h-auto rounded-lg shadow-2xl border border-white/20 origin-center"
                 />
 
-                <img
+                <img loading="lazy" decoding="async"
                   ref={kb4Ref}
                   src={kb4}
                   alt="Obra 4"
@@ -295,12 +281,6 @@ export default function Section6() {
                 ref={californiaTextRef}
                 className="flex flex-col gap-2 z-10 backdrop-blur-md bg-[#190003]/65 p-4 sm:p-5 rounded-2xl border border-white/10 shadow-lg"
               >
-                <h4
-                  style={{ color: colorPrincipal || "#FF2D54" }}
-                  className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-white/5 border border-white/10 w-fit rounded-xs"
-                >
-                  // AISLAMIENTO & SERVICIOS HOGAR
-                </h4>
 
                 <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
                   Aislamiento & Limpieza de Áticos
@@ -331,7 +311,7 @@ export default function Section6() {
 
                   <Tooltip delay={0}>
                     <Tooltip.Trigger>
-                      <div role="button" tabIndex={0}>
+                      <div>
                         <Button
                           isIconOnly
                           size="sm"
@@ -354,7 +334,7 @@ export default function Section6() {
               </div>
 
               <div className="w-full flex justify-center z-0 pointer-events-none">
-                <img
+                <img loading="lazy" decoding="async"
                   src={california}
                   alt="Servicios de aislamiento y climatización en California"
                   className="h-auto object-contain w-[90%] drop-shadow-2xl -mt-40"
@@ -367,12 +347,6 @@ export default function Section6() {
         {/*  ATTIC'S EXPRESS */}
         <div className="w-full lg:w-[320px] xl:w-95 bg-[#0b978e] rounded-[20px] px-6 pt-6 flex flex-col justify-between overflow-hidden border border-white/10 shadow-md">
           <div className="flex flex-col gap-3 z-10">
-            <h4
-              style={{ color: colorPrincipal || "#fff" }}
-              className="text-[10px] md:text-xs font-mono font-bold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-black/60 border border-white/10 w-fit rounded-xs text-white"
-            >
-              // SERVICIOS DE PLOMERÍA
-            </h4>
             <h3 className="text-white text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
               Plataforma para Servicios de Plomería
             </h3>
@@ -392,13 +366,13 @@ export default function Section6() {
                 }
                 size="sm"
                 className="font-semibold text-white shadow-md bg-teal-900 hover:bg-teal-800 transition-colors cursor-pointer"
-                aria-label="Ir a Attics Express"
+                aria-label="Ir al sitio del proyecto de plomería"
               >
                 Ver Proyecto ↗
               </Button>
               <Tooltip delay={0}>
                 <Tooltip.Trigger>
-                  <div role="button" tabIndex={0}>
+                  <div>
                     <Button
                       isIconOnly
                       size="sm"
@@ -417,9 +391,9 @@ export default function Section6() {
               </Tooltip>
             </div>
           </div>
-          <img
+          <img loading="lazy" decoding="async"
             src={attics}
-            alt="attics express"
+            alt="Plataforma para servicios de plomería"
             className="w-full h-auto object-contain 5 mt-8"
           />
         </div>

@@ -19,7 +19,7 @@ export default function MarcoCinematico() {
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none z-30 transition-all duration-1000 ease-in-out"
+      className="fixed inset-0 pointer-events-none z-30 transition-[box-shadow] duration-700 ease-out"
       style={{
         boxShadow: `
           inset 0 0 60px 15px rgba(${rgbDinamico}, ${opacidad1}),

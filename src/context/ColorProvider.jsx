@@ -13,33 +13,14 @@ export default function ColorProvider({ children }) {
       colorPrincipal,
     );
 
-    const manejarClicGlobal = (e) => {
-      if (
-        e.target.closest("button") ||
-        e.target.closest("a") ||
-        e.target.closest(".no-cambiar-color")
-      ) {
-        return;
-      }
+  }, [colorPrincipal]);
 
-      setColorPrincipal((colorActual) => {
-        const indiceActual = LISTA_COLORES.indexOf(colorActual);
-        const siguienteIndice = (indiceActual + 1) % LISTA_COLORES.length;
-        const nuevoColor = LISTA_COLORES[siguienteIndice];
-
-        document.documentElement.style.setProperty(
-          "--color-dinamico",
-          nuevoColor,
-        );
-
-        return nuevoColor;
-      });
-    };
-
-    window.addEventListener("click", manejarClicGlobal);
-    return () => window.removeEventListener("click", manejarClicGlobal);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // El color ya no cambia con cualquier clic: se cambia con el selector explícito
+  const siguienteColor = () =>
+    setColorPrincipal((actual) => {
+      const i = LISTA_COLORES.indexOf(actual);
+      return LISTA_COLORES[(i + 1) % LISTA_COLORES.length];
+    });
 
   return (
     <ColorContext.Provider
@@ -47,6 +28,7 @@ export default function ColorProvider({ children }) {
         colorPrincipal,
         setIntensidadMarco,
         intensidadMarco,
+        siguienteColor,
       }}
     >
       {children}

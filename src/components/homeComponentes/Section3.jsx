@@ -29,6 +29,7 @@ export default function Section3() {
 
   useGSAP(
     () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -56,14 +57,7 @@ export default function Section3() {
         },
       });
 
-      // 1. Texto superior: desvanecimiento constante de 0 a 0.15 de scroll
-      tl.fromTo(
-        ".texto-top-sec3",
-        { opacity: 1 },
-        { opacity: 0, duration: 0.15, ease: "none" },
-        0
-      );
-
+      if (!reduce) {
       // 2. Zoom al Texto PORTAFOLIO (Escala fluida 100% lineal sin frenos)
       // Tramo 1: del 0% al 50% del scroll -> escala de 1 a 4
       tl.to(
@@ -86,6 +80,8 @@ export default function Section3() {
         0.8
       );
 
+      }
+
       // 3. Texto inferior: desvanecimiento de 0.8 a 1.0 del scroll
       tl.fromTo(
         ".texto-bottom-sec3",
@@ -98,18 +94,9 @@ export default function Section3() {
   );
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-white z-40">
-      <link
-        href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap"
-        rel="stylesheet"
-      />
-
+    <div ref={containerRef} id="portafolio" className="relative h-[400vh] bg-white z-40">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white px-4">
-        <span className="texto-top-sec3 absolute top-12 font-mono text-md md:text-xl lg:text-xs tracking-[0.2em] text-neutral-400 uppercase select-none">
-          [ SELECTED WORKS // 2024 - 2026 ]
-        </span>
-
-        <div className="texto-zoom-sec3 flex items-center justify-center font-bold text-black uppercase select-none font-['Antonio',Impact,sans-serif] text-center text-[11vh] md:text-[20vh] lg:text-[45vh] leading-none tracking-tighter origin-center">
+        <div className="texto-zoom-sec3 flex items-center justify-center font-bold text-black uppercase select-none font-display text-center text-[11vh] md:text-[20vh] lg:text-[45vh] leading-none tracking-tighter origin-center">
           <span>PORT</span>
           <span className="origin-center">A</span>
           <span>FOLIO</span>
