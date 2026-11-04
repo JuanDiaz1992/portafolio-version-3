@@ -10,6 +10,9 @@ import {
   FaGithub,
   FaFigma,
   FaLinkedin,
+  FaJava,
+  FaNodeJs,
+  FaDocker,
 } from "react-icons/fa";
 import {
   SiExpo,
@@ -18,6 +21,10 @@ import {
   SiWhatsapp,
   SiGsap,
   SiFramer,
+  SiTypescript,
+  SiNextdotjs,
+  SiMysql,
+  SiTailwindcss,
 } from "react-icons/si";
 import { BiLogoBlender } from "react-icons/bi";
 import gsap from "gsap";
@@ -37,10 +44,17 @@ export default function Section1() {
 
   const skills = [
     [<FaJs />, "JavaScript"],
+    [<SiTypescript />, "TypeScript"],
     [<FaReact />, "React JS"],
+    [<SiNextdotjs />, "Next.js"],
     [<SiExpo />, "React Native Expo"],
+    [<SiTailwindcss />, "Tailwind CSS"],
+    [<FaJava />, "Java"],
     [<SiSpringboot />, "Spring Boot"],
+    [<FaNodeJs />, "Node.js"],
     [<FaPhp />, "PHP"],
+    [<SiMysql />, "MySQL"],
+    [<FaDocker />, "Docker"],
     [<FaHtml5 />, "HTML 5"],
     [<FaCss3 />, "CSS3"],
     [<FaWordpress />, "Wordpress"],
@@ -50,6 +64,9 @@ export default function Section1() {
     [<SiFramer />, "Framer Motion"],
     [<BiLogoBlender />, "Blender"],
   ];
+  // Con muchos iconos se pasa a 4 columnas; el tamaño se calcula según filas y columnas
+  const columnas = skills.length > 16 ? 4 : 3;
+  const filas = Math.ceil(skills.length / columnas);
 
   useGSAP(
     () => {
@@ -223,10 +240,11 @@ export default function Section1() {
 
               {/* Los iconos se escalan con el tamaño disponible (container query), sin scroll */}
               <div
-                className="grid grid-cols-3 gap-x-2 justify-items-center items-center w-full flex-1 min-h-0"
+                className="grid gap-x-2 justify-items-center items-center w-full flex-1 min-h-0"
                 style={{
                   containerType: "size",
-                  gridTemplateRows: `repeat(${Math.ceil(skills.length / 3)}, minmax(0, 1fr))`,
+                  gridTemplateColumns: `repeat(${columnas}, minmax(0, 1fr))`,
+                  gridTemplateRows: `repeat(${filas}, minmax(0, 1fr))`,
                 }}
               >
                 {skills.map((skill) => (
@@ -239,9 +257,9 @@ export default function Section1() {
                         <div
                           className="text-white hover:text-[#00e1ff] flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md rounded-xl bg-white/5 border border-white/5 hover:border-[#00e1ff]/30"
                           style={{
-                            width: "min(3.5rem, 15cqh, 28cqw)",
+                            width: `min(3.5rem, ${75 / filas}cqh, ${84 / columnas}cqw)`,
                             aspectRatio: "1",
-                            fontSize: "min(2.25rem, 8cqh, 15cqw)",
+                            fontSize: `min(2.25rem, ${40 / filas}cqh, ${45 / columnas}cqw)`,
                           }}
                           role="img"
                           tabIndex={0}
